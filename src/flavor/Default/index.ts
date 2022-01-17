@@ -1,3 +1,4 @@
+import { ReactComponent as Logo } from '../../img/reddit-logo.svg';
 interface IFlavor {
   colors: {
     color1: string;
@@ -13,7 +14,7 @@ interface IFlavor {
     test: string;
   };
 
-  images: {};
+  images: { logo: any };
 }
 
 export const Default: IFlavor = {
@@ -21,14 +22,14 @@ export const Default: IFlavor = {
     color1: 'red',
     color2: 'green',
     color3: 'blue',
-    background: '#1a1a1b',
+    background: '#13171a',
     backgroundCard: '#2b2b2c',
     textFieldTextColor: '#ffffff',
   },
   strings: {
     test: 'teste',
   },
-  images: {},
+  images: { logo: Logo },
 };
 
 export type { IFlavor };
