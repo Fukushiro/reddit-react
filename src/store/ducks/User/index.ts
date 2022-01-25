@@ -5,7 +5,10 @@ export const { Types: UserTypes, Creators: UserCreators } = createActions({
   login: ['user'],
 });
 
-const INITIAL_STATE: { user: any; logado: boolean } = {
+const INITIAL_STATE: {
+  user: { id?: number; username?: string } | null;
+  logado: boolean;
+} = {
   user: null,
   logado: false,
 };

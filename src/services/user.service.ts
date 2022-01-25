@@ -37,3 +37,24 @@ export async function authUserService({
     return failNoReturn();
   }
 }
+interface IRetornoSubreddit {
+  response: {
+    data: {
+      subreddits: Array<{ id: number; nome: string }>;
+    } | null;
+  } | null;
+  funcionou: boolean;
+}
+export async function getUserSubredditService(
+  id: number
+): Promise<IRetornoSubreddit> {
+  try {
+    const RESPONSE = await apiReddit.post('/user/get/subreddit', {
+      userid: id,
+    });
+
+    return success(RESPONSE);
+  } catch (e) {
+    return failNoReturn();
+  }
+}

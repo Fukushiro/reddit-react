@@ -31,7 +31,7 @@ export const Title = styled.p`
   font-size: 12px;
   color: #828078;
   padding-left: 30px;
-  background-color: red;
+  /* background-color: red; */
 `;
 export const ButtonInside = styled.button`
   background-color: #141615;
@@ -42,7 +42,7 @@ export const ButtonInside = styled.button`
 
   text-align: start;
   padding-left: 35px;
-  background-color: blue;
+  /* background-color: blue; */
 
   &:hover {
     background-color: #1d2122;
