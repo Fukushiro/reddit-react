@@ -9,6 +9,7 @@ export const MainContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  z-index: 10000;
 `;
 
 export const Button = styled.button`
