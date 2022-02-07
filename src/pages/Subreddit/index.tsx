@@ -54,9 +54,12 @@ const Subreddit: React.FC = () => {
         </Styles.InfosTextContainer>
       </Styles.InfosContainer>
       <Styles.BodyContainer>
-        {posts?.posts.map((v, i) => {
-          return <Card post={v} />;
-        })}
+        <Styles.LeftContainer>
+          {posts?.posts.map((v, i) => {
+            return <Card post={v} style={{ marginBottom: 10 }} key={i} />;
+          })}
+        </Styles.LeftContainer>
+        <Styles.RightContainer></Styles.RightContainer>
       </Styles.BodyContainer>
     </Styles.MainContainer>
   );

@@ -34,6 +34,8 @@ export const Title = styled.p`
   padding-left: 30px;
   /* background-color: red; */
 `;
+
+export const ButtonDiv = styled.div``;
 export const ButtonInside = styled.button`
   background-color: #141615;
   color: white;
@@ -43,6 +45,7 @@ export const ButtonInside = styled.button`
 
   text-align: start;
   padding-left: 35px;
+  cursor: pointer;
   /* background-color: blue; */
 
   &:hover {
@@ -61,4 +64,7 @@ export const Container = styled.div`
   top: 50px;
   overflow-y: scroll;
   background-color: #141615;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;

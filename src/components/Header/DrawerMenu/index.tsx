@@ -65,15 +65,18 @@ const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title }) => {
         <Styles.Title>MY COMMUNITIES</Styles.Title>
         {/* <Styles.ButtonInside>dsads</Styles.ButtonInside> */}
         {subreddits.map((v, i) => (
-          <Styles.ButtonInside
-            onClick={() => {
-              navigate(urls.subreddit.replace(':subredditid', v.id.toString()));
-              dispatch({ type: HeaderTypes.SET_OPEN_SUBREDDITS });
-            }}
-            key={i}
-          >
-            {v.nome}
-          </Styles.ButtonInside>
+          <Styles.ButtonDiv key={i}>
+            <Styles.ButtonInside
+              onClick={() => {
+                navigate(
+                  urls.subreddit.replace(':subredditid', v.id.toString())
+                );
+                dispatch({ type: HeaderTypes.SET_OPEN_SUBREDDITS });
+              }}
+            >
+              {v.nome}
+            </Styles.ButtonInside>
+          </Styles.ButtonDiv>
         ))}
       </Styles.Container>
     </Styles.MainContainer>

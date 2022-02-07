@@ -49,6 +49,7 @@ export async function getSubredditPostsService({
 export interface IGetSubredditPost {
   id: number;
   title: string;
+  text: string | null;
 }
 export interface IGetSubredditPostsService {
   posts: Array<IGetSubredditPost>;

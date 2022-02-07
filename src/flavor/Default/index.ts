@@ -1,4 +1,10 @@
 import { ReactComponent as Logo } from '../../img/reddit-logo.svg';
+import {
+  IoIosArrowDropdownCircle,
+  IoIosArrowDropdown,
+  IoIosArrowDropupCircle,
+  IoIosArrowDropup,
+} from 'react-icons/io';
 interface IFlavor {
   colors: {
     color1: string;
@@ -15,6 +21,12 @@ interface IFlavor {
   };
 
   images: { logo: any };
+  icons: {
+    whiteUpArrow: any;
+    blackUpArrow: any;
+    whiteDownArrow: any;
+    blackDownArrow: any;
+  };
 }
 
 export const Default: IFlavor = {
@@ -30,6 +42,12 @@ export const Default: IFlavor = {
     test: 'teste',
   },
   images: { logo: Logo },
+  icons: {
+    blackDownArrow: IoIosArrowDropdown,
+    blackUpArrow: IoIosArrowDropup,
+    whiteDownArrow: IoIosArrowDropdownCircle,
+    whiteUpArrow: IoIosArrowDropupCircle,
+  },
 };
 
 export type { IFlavor };

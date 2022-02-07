@@ -57,10 +57,21 @@ export const InfosTextTitle = styled.h2`
 //body
 export const BodyContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   background-color: #191f25;
+  justify-content: center;
+  align-items: center;
 `;
 
-export const LeftContainer = styled.div``;
+export const LeftContainer = styled.div`
+  display: flex;
+  flex-direction: column;
 
-export const RightContainer = styled.div``;
+  /* background-color: #191f25; */
+  align-items: center;
+  flex: 0.7;
+`;
+
+export const RightContainer = styled.div`
+  flex: 0.3;
+`;

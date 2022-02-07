@@ -9,6 +9,11 @@ export const MainContainer = styled.div`
   flex-direction: row;
   border-bottom: 1px solid white;
   flex: 1;
+  position: sticky;
+  z-index: 100000;
+  top: 0;
 `;
 
-export const Logo = styled(flavor.images.logo)``;
+export const Logo = styled(flavor.images.logo)`
+  cursor: pointer;
+`;
