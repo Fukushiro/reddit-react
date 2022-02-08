@@ -1,8 +1,15 @@
 import * as Styles from './styles';
 import { flavor } from '../../flavor';
 import { useSelector } from 'react-redux';
-import React, { CSSProperties, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 import { IGetSubredditPost } from '../../services/subreddit.service';
+import {
+  callAvaliateUserUpdatePostService,
+  callGetUserUpvotePostAvaliationService,
+  callGetUserUpvotePostUpvotesService,
+  IUserUpvotePost,
+  IUserUpvotePostAvaliation,
+} from '../../services/post.service';
 // import { Container } from './styles';
 interface ICard {
   post: IGetSubredditPost;
@@ -11,8 +18,50 @@ interface ICard {
 const Card: React.FC<ICard> = ({ post, style }) => {
   //useState
   const [upordown, setUpordown] = useState<number>(0);
+  const [isUp, setIsUp] = useState<IUserUpvotePostAvaliation | null>(null);
+  const [totalUp, setTotalUp] = useState<number>(0);
+  const [update, setUpdate] = useState<boolean>(false);
   //user
   const user = useSelector((state: any) => state.User);
+
+  //functions
+  async function changeAvaliation(upvote: number) {
+    callAvaliateUserUpdatePostService({
+      postid: post.id,
+      upvote: upvote,
+      userid: user.user.id,
+    });
+    setUpordown(upvote);
+    setUpdate(!update);
+  }
+
+  useEffect(() => {
+    (async () => {
+      const up = await callGetUserUpvotePostUpvotesService({
+        id: post.id,
+      });
+
+      if (up?.upvotes != null) {
+        setTotalUp(up.upvotes);
+      } else {
+        setTotalUp(0);
+      }
+      console.log('coisas', post, user);
+    })();
+  }, [update]);
+  useEffect(() => {
+    (async () => {
+      const at = await callGetUserUpvotePostAvaliationService({
+        postid: post.id,
+        userid: user.user.id,
+      });
+      if (at) {
+        setIsUp(at);
+      } else {
+        setIsUp(null);
+      }
+    })();
+  }, [user, post, update]);
 
   return (
     <Styles.MainContainer style={style}>
@@ -21,28 +70,32 @@ const Card: React.FC<ICard> = ({ post, style }) => {
           onClick={() => {
             if (upordown != 1) {
               setUpordown(1);
+              changeAvaliation(1);
             } else {
               setUpordown(0);
+              changeAvaliation(0);
             }
           }}
         >
-          {upordown === 1 ? (
+          {!!isUp && isUp.upvote === 1 ? (
             <flavor.icons.whiteUpArrow />
           ) : (
             <flavor.icons.blackUpArrow />
           )}
         </Styles.LeftContainerButton>
-        <Styles.LeftContainerDiv>50</Styles.LeftContainerDiv>
+        <Styles.LeftContainerDiv>{totalUp}</Styles.LeftContainerDiv>
         <Styles.LeftContainerButton
           onClick={() => {
             if (upordown != -1) {
               setUpordown(-1);
+              changeAvaliation(-1);
             } else {
               setUpordown(0);
+              changeAvaliation(0);
             }
           }}
         >
-          {upordown === -1 ? (
+          {!!isUp && isUp.upvote === -1 ? (
             <flavor.icons.whiteDownArrow />
           ) : (
             <flavor.icons.blackDownArrow />
