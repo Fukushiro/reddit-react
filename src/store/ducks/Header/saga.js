@@ -1,4 +1,3 @@
-import { all, put, takeLatest } from 'redux-saga/effects';
-import { authUserService } from '../../../services/user.service';
+import { all } from "redux-saga/effects";
 
 export default all([]);

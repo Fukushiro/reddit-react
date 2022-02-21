@@ -1,15 +1,15 @@
-import * as Styles from './styles';
-import { flavor } from '../../flavor';
-import { useSelector } from 'react-redux';
-import React, { CSSProperties, useEffect, useState } from 'react';
-import { IGetSubredditPost } from '../../services/subreddit.service';
+import * as Styles from "./styles";
+import { flavor } from "../../flavor";
+import { useSelector } from "react-redux";
+import React, { CSSProperties, useEffect, useState } from "react";
+import { IGetSubredditPost } from "../../services/subreddit.service";
 import {
   callAvaliateUserUpdatePostService,
   callGetUserUpvotePostAvaliationService,
   callGetUserUpvotePostUpvotesService,
   IUserUpvotePost,
   IUserUpvotePostAvaliation,
-} from '../../services/post.service';
+} from "../../services/post.service";
 // import { Container } from './styles';
 interface ICard {
   post: IGetSubredditPost;
@@ -26,7 +26,7 @@ const Card: React.FC<ICard> = ({ post, style }) => {
 
   //functions
   async function changeAvaliation(upvote: number) {
-    callAvaliateUserUpdatePostService({
+    await callAvaliateUserUpdatePostService({
       postid: post.id,
       upvote: upvote,
       userid: user.user.id,
@@ -46,7 +46,7 @@ const Card: React.FC<ICard> = ({ post, style }) => {
       } else {
         setTotalUp(0);
       }
-      console.log('coisas', post, user);
+      console.log("coisas", post, user);
     })();
   }, [update]);
   useEffect(() => {

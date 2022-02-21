@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 // import { flavor } from '../../flavor';
 
 export const MainContainer = styled.div`
@@ -60,7 +60,7 @@ export const BodyContainer = styled.div`
   flex-direction: row;
   background-color: #191f25;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 `;
 
 export const LeftContainer = styled.div`
@@ -69,9 +69,33 @@ export const LeftContainer = styled.div`
 
   /* background-color: #191f25; */
   align-items: center;
-  flex: 0.7;
+  /* flex: 0.7; */
+  /* background-color: blue; */
 `;
 
 export const RightContainer = styled.div`
-  flex: 0.3;
+  /* flex: 0.3; */
+  flex-direction: column;
+
+  background-color: blue;
+  margin-left: 24px;
 `;
+
+export const RightContainerAbout = styled.div`
+  background-color: #1a1a1b;
+  /* background-color: red; */
+  width: 200px;
+  padding: 12px;
+`;
+
+export const RightContainerAboutTitle = styled.h2`
+  color: "#545556";
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+`;
+
+export const RightContainerAboutText = styled.p`
+  font-size: 14px;
+  color: "#D7DADC";
+`;
+export const RightContainerAboutButton = styled.button``;
