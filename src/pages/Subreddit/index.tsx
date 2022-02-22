@@ -82,7 +82,11 @@ const Subreddit: React.FC = () => {
               from the game League of Legends.
             </Styles.RightContainerAboutText>
 
-            <Button onClick={handlerCreatePost} text={"Create post"} />
+            <Button
+              onClick={handlerCreatePost}
+              text={"Create post"}
+              style={{ width: "100%" }}
+            />
           </Styles.RightContainerAbout>
         </Styles.RightContainer>
       </Styles.BodyContainer>
