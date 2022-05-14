@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { small } from '../../constants/sizes';
 // import { flavor } from '../../flavor';
 
 export const MainContainer = styled.div`
@@ -70,15 +71,26 @@ export const LeftContainer = styled.div`
   /* background-color: #191f25; */
   align-items: center;
   /* flex: 0.7; */
-  /* background-color: blue; */
+  /* background-color: red; */
+  width: 70%;
+  @media (max-width: ${small}px) {
+    width: 100%;
+  }
 `;
 
 export const RightContainer = styled.div`
   /* flex: 0.3; */
+  display: flex;
   flex-direction: column;
 
-  background-color: blue;
-  margin-left: 24px;
+  /* background-color: blue; */
+
+  align-items: center;
+  width: 30%;
+
+  @media (max-width: ${small}px) {
+    display: none;
+  }
 `;
 
 export const RightContainerAbout = styled.div`
@@ -89,13 +101,13 @@ export const RightContainerAbout = styled.div`
 `;
 
 export const RightContainerAboutTitle = styled.h2`
-  color: "#545556";
+  color: '#545556';
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 `;
 
 export const RightContainerAboutText = styled.p`
   font-size: 14px;
-  color: "#D7DADC";
+  color: '#D7DADC';
 `;
 export const RightContainerAboutButton = styled.button``;

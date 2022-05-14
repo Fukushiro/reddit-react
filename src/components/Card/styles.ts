@@ -1,14 +1,18 @@
-import styled from "styled-components";
-import { flavor } from "../../flavor";
+import styled from 'styled-components';
+import { small } from '../../constants/sizes';
+import { flavor } from '../../flavor';
 
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
   background-color: #141616;
-  width: 640px;
+  width: 90%;
   border: 1px solid #4a4845;
   &:first-child {
     margin-top: 20px;
+  }
+  @media (max-width: ${small}px) {
+    width: 100%;
   }
 `;
 

@@ -1,15 +1,14 @@
-import * as Styles from "./styles";
-import { flavor } from "../../flavor";
-import { useSelector } from "react-redux";
-import React, { CSSProperties, useEffect, useState } from "react";
-import { IGetSubredditPost } from "../../services/subreddit.service";
+import * as Styles from './styles';
+import { flavor } from '../../flavor';
+import { useSelector } from 'react-redux';
+import React, { CSSProperties, useEffect, useState } from 'react';
+import { IGetSubredditPost } from '../../services/subreddit.service';
 import {
   callAvaliateUserUpdatePostService,
   callGetUserUpvotePostAvaliationService,
   callGetUserUpvotePostUpvotesService,
-  IUserUpvotePost,
   IUserUpvotePostAvaliation,
-} from "../../services/post.service";
+} from '../../services/post.service';
 // import { Container } from './styles';
 interface ICard {
   post: IGetSubredditPost;
@@ -46,9 +45,8 @@ const Card: React.FC<ICard> = ({ post, style }) => {
       } else {
         setTotalUp(0);
       }
-      console.log("coisas", post, user);
     })();
-  }, [update]);
+  }, [update, post]);
   useEffect(() => {
     (async () => {
       const at = await callGetUserUpvotePostAvaliationService({
@@ -68,7 +66,7 @@ const Card: React.FC<ICard> = ({ post, style }) => {
       <Styles.LeftContainer>
         <Styles.LeftContainerButton
           onClick={() => {
-            if (upordown != 1) {
+            if (upordown !== 1) {
               setUpordown(1);
               changeAvaliation(1);
             } else {
@@ -86,7 +84,7 @@ const Card: React.FC<ICard> = ({ post, style }) => {
         <Styles.LeftContainerDiv>{totalUp}</Styles.LeftContainerDiv>
         <Styles.LeftContainerButton
           onClick={() => {
-            if (upordown != -1) {
+            if (upordown !== -1) {
               setUpordown(-1);
               changeAvaliation(-1);
             } else {

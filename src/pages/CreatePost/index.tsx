@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import Button from "../../components/Button";
-import Header from "../../components/Header";
-import TextInput from "../../components/TextInput";
-import { urls } from "../../route";
-import { callCreatePostService } from "../../services/post.service";
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import Button from '../../components/Button';
+import Header from '../../components/Header';
+import TextInput from '../../components/TextInput';
+import { urls } from '../../route';
+import { callCreatePostService } from '../../services/post.service';
 import {
   callGetSubredditPostsService,
   callGetSubredditService,
   IGetSubredditService,
-} from "../../services/subreddit.service";
-import * as Styles from "./styles";
+} from '../../services/subreddit.service';
+import * as Styles from './styles';
 // import { Container } from './styles';
 
 const CreatePost: React.FC = () => {
   //useStates
   const [subreddit, setSubreddit] = useState<IGetSubredditService>();
+  const [hasText, setHasText] = useState<boolean>(false);
   //form
   const [title, setTitle] = useState<string>();
   //navigation
@@ -41,7 +42,7 @@ const CreatePost: React.FC = () => {
   async function createPost() {
     if (!!subreddit && !!title) {
       await callCreatePostService({ subredditid: subreddit.id, title: title });
-      navigate(urls.subreddit.replace(":subredditid", subreddit.id.toString()));
+      navigate(urls.subreddit.replace(':subredditid', subreddit.id.toString()));
     }
   }
   return (
@@ -57,7 +58,7 @@ const CreatePost: React.FC = () => {
               value={title}
               setValue={setTitle}
               placeholder="Title"
-              styles={{ width: "100%" }}
+              styles={{ width: '100%' }}
             />
             <Styles.CreatePostContainerFormButtonDiv>
               <Button onClick={createPost} text="Criar post" />
