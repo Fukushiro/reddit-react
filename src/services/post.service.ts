@@ -1,5 +1,5 @@
-import { failNoReturn, IRetorno, success } from '.';
-import { apiReddit } from './apiReddit';
+import { failNoReturn, IRetorno, success } from ".";
+import { apiReddit } from "./apiReddit";
 
 //get sum of upvotes
 export async function getUserUpvotePostUpvotesService({
@@ -118,6 +118,48 @@ export async function callAvaliateUserUpdatePostService({
     userid: userid,
     postid: postid,
     upvote: upvote,
+  });
+  if (funcionou) {
+    return true;
+  }
+  return false;
+}
+
+//create post
+export async function createPostService({
+  subredditid,
+  title,
+  text,
+}: {
+  subredditid: number;
+  title: string;
+  text?: string | null;
+}): Promise<IRetorno> {
+  try {
+    const RESPONSE = await apiReddit.post(`post/create`, {
+      subredditid: subredditid,
+      title: title,
+      text: !!text ? text : null,
+    });
+    return success(RESPONSE);
+  } catch (e) {
+    return failNoReturn();
+  }
+}
+
+export async function callCreatePostService({
+  subredditid,
+  title,
+  text,
+}: {
+  subredditid: number;
+  title: string;
+  text?: string;
+}): Promise<boolean> {
+  const { response, funcionou } = await createPostService({
+    subredditid: subredditid,
+    title: title,
+    text: !!text ? text : null,
   });
   if (funcionou) {
     return true;

@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import Header from '../../components/Header';
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Header from "../../components/Header";
 import {
   callGetSubredditPostsService,
   callGetSubredditService,
   getSubredditService,
   IGetSubredditService,
-} from '../../services/subreddit.service';
-import * as Styles from './styles';
+} from "../../services/subreddit.service";
+import * as Styles from "./styles";
 // import { Container } from './styles';
-import { IGetSubredditPostsService } from './../../services/subreddit.service';
-import Card from '../../components/Card';
+import { IGetSubredditPostsService } from "./../../services/subreddit.service";
+import Card from "../../components/Card";
+import { urls } from "../../route";
+import Button from "../../components/Button";
 
 const Subreddit: React.FC = () => {
   //useStates
@@ -20,6 +22,7 @@ const Subreddit: React.FC = () => {
   //
   const { subredditid } = useParams();
   const location = useLocation();
+  const navigate = useNavigate();
   //useEffect
   // refresh current subreddit
   useEffect(() => {
@@ -40,6 +43,15 @@ const Subreddit: React.FC = () => {
       }
     })();
   }, [subredditid]);
+  //functions
+  //create post button handler
+  function handlerCreatePost() {
+    if (subredditid) {
+      navigate(
+        urls.createPost.replace(":subredditid", subredditid?.toString())
+      );
+    }
+  }
   return (
     <Styles.MainContainer>
       <Header />
@@ -59,7 +71,24 @@ const Subreddit: React.FC = () => {
             return <Card post={v} style={{ marginBottom: 10 }} key={i} />;
           })}
         </Styles.LeftContainer>
-        <Styles.RightContainer></Styles.RightContainer>
+        <Styles.RightContainer>
+          <Styles.RightContainerAbout>
+            <Styles.RightContainerAboutTitle>
+              About Community
+            </Styles.RightContainerAboutTitle>
+            <Styles.RightContainerAboutText>
+              You play Sion? You belong here! Share your games, share your
+              strategies, cheeses, big plays, guides, etc. Sion is a champion
+              from the game League of Legends.
+            </Styles.RightContainerAboutText>
+
+            <Button
+              onClick={handlerCreatePost}
+              text={"Create post"}
+              style={{ width: "100%" }}
+            />
+          </Styles.RightContainerAbout>
+        </Styles.RightContainer>
       </Styles.BodyContainer>
     </Styles.MainContainer>
   );
