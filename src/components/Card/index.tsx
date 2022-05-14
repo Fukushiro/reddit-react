@@ -26,7 +26,7 @@ const Card: React.FC<ICard> = ({ post, style }) => {
 
   //functions
   async function changeAvaliation(upvote: number) {
-    callAvaliateUserUpdatePostService({
+    await callAvaliateUserUpdatePostService({
       postid: post.id,
       upvote: upvote,
       userid: user.user.id,
