@@ -22,7 +22,8 @@ const Subreddit: React.FC = () => {
 
   const [posts, setPosts] = useState<IGetSubredditPostsService>();
   // modals
-  const [modalOpen, setModalOpen] = useState<boolean>(true);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const [modalMessage, setModalMessage] = useState<string>('');
   //
   const { subredditid } = useParams();
   const location = useLocation();
@@ -43,6 +44,11 @@ const Subreddit: React.FC = () => {
           if (posts) {
             setPosts(posts);
           }
+        } else {
+          if (subreddit.message) {
+            setModalMessage(subreddit.message);
+            setModalOpen(true);
+          }
         }
       }
     })();
@@ -61,8 +67,8 @@ const Subreddit: React.FC = () => {
       <CustomModal
         modalOpen={modalOpen}
         setModalOpen={setModalOpen}
-        text="addas"
-        title="dasdas"
+        title="Retorno"
+        text={modalMessage}
       />
       <Header />
       <Styles.BackgroundImage src="https://placeholder.pics/svg/1000x900" />

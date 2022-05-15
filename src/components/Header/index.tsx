@@ -10,8 +10,9 @@ import { urls } from '../../route';
 import Search from './Search';
 import { useMediaQuery } from '@react-hook/media-query';
 import { small } from '../../constants/sizes';
+import { IGetSubredditService } from '../../services/subreddit.service';
 interface IHeader {}
-const Header: React.FC<IHeader> = () => {
+const Header: React.FC<IHeader> = ({}) => {
   // media query
   const smallQuery = useMediaQuery(`only screen and (max-width: ${small}px)`);
   //

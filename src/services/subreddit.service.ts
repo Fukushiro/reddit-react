@@ -34,7 +34,7 @@ export async function callGetSubredditService({
     id: -1,
     nome: '',
     erro: true,
-    message: 'Erro callGetSubredditService',
+    message: `Erro ${response}`,
   };
 }
 
@@ -95,22 +95,30 @@ interface IGetSubredditByName {
   subscribes: number;
 }
 
-interface IGetSubredditByNameService {
-  subreddits: Array<IGetSubredditByName>;
+interface IGetSubredditByNameService extends RetornoPadrao {
+  retorno?: {
+    subreddits: Array<IGetSubredditByName>;
+  };
 }
 
 export async function callGetSubredditByName({
   name,
 }: {
   name: string;
-}): Promise<IGetSubredditByNameService | null> {
+}): Promise<IGetSubredditByNameService> {
   const { response, funcionou } = await getSubredditByNameService({
     name: name,
   });
   if (funcionou) {
     return {
-      subreddits: response.data.subreddit,
+      retorno: {
+        subreddits: response.data.subreddit,
+      },
+      message: 'Sucesso',
     };
   }
-  return null;
+  return {
+    erro: true,
+    message: 'Erro',
+  };
 }
