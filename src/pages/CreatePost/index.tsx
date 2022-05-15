@@ -29,7 +29,7 @@ const CreatePost: React.FC = () => {
         const subreddit = await callGetSubredditService({
           id: Number(subredditid),
         });
-        if (subreddit != null) {
+        if (!subreddit.erro) {
           setSubreddit(subreddit);
           const posts = await callGetSubredditPostsService({
             id: Number(subredditid),

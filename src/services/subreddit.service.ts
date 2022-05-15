@@ -14,7 +14,7 @@ export async function getSubredditService({
     return failNoReturn();
   }
 }
-export interface IGetSubredditService {
+export interface IGetSubredditService extends RetornoPadrao {
   id: number;
   nome: string;
 }
@@ -22,7 +22,7 @@ export async function callGetSubredditService({
   id,
 }: {
   id: number;
-}): Promise<IGetSubredditService | null> {
+}): Promise<IGetSubredditService> {
   const { response, funcionou } = await getSubredditService({ id: id });
   if (funcionou) {
     return {
@@ -30,7 +30,12 @@ export async function callGetSubredditService({
       nome: response.data.subreddit.nome,
     };
   }
-  return null;
+  return {
+    id: -1,
+    nome: '',
+    erro: true,
+    message: 'Erro callGetSubredditService',
+  };
 }
 
 //get posts
