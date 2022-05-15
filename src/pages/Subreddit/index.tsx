@@ -13,12 +13,16 @@ import { IGetSubredditPostsService } from './../../services/subreddit.service';
 import Card from '../../components/Card';
 import { urls } from '../../route';
 import Button from '../../components/Button';
+import { Box, Modal, Typography } from '@mui/material';
+import CustomModal from '../../components/CustomModal';
 
 const Subreddit: React.FC = () => {
   //useStates
   const [subreddit, setSubreddit] = useState<IGetSubredditService>();
 
   const [posts, setPosts] = useState<IGetSubredditPostsService>();
+  // modals
+  const [modalOpen, setModalOpen] = useState<boolean>(true);
   //
   const { subredditid } = useParams();
   const location = useLocation();
@@ -54,6 +58,12 @@ const Subreddit: React.FC = () => {
   }
   return (
     <Styles.MainContainer>
+      <CustomModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        text="addas"
+        title="dasdas"
+      />
       <Header />
       <Styles.BackgroundImage src="https://placeholder.pics/svg/1000x900" />
       <Styles.InfosContainer>
