@@ -1,5 +1,8 @@
 import styled from 'styled-components';
+import { small } from '../../constants/sizes';
 import { flavor } from '../../flavor';
+import DrawerMenu from './DrawerMenu';
+import Search from './Search';
 
 export const MainContainer = styled.div`
   background-color: #141615;
@@ -14,7 +17,29 @@ export const MainContainer = styled.div`
   top: 0;
   align-items: center;
 `;
-
+export const logoContainer = styled.div`
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+  flex: 0.1;
+  @media (max-width: ${small}px) {
+    margin-left: 10px;
+  }
+`;
 export const Logo = styled(flavor.images.logo)`
   cursor: pointer;
+`;
+
+export const LogoSmall = styled(flavor.images.logoSmall)`
+  cursor: pointer;
+`;
+
+export const Drawer = styled(DrawerMenu)`
+  /* flex: 0.25; */
+  /* margin-right: 20px; */
+`;
+
+export const SearchBar = styled(Search)`
+  /* flex: 0.25; */
 `;

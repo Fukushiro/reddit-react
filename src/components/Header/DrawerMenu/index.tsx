@@ -7,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 import { urls } from '../../../route';
 import { useDispatch, useSelector } from 'react-redux';
 import { HeaderTypes } from '../../../store/ducks/Header';
+import { CSSProperties } from 'styled-components';
 interface IDrawerMenu {
   user: { user: { username: string; id: number }; logado: boolean } | null;
   title?: string;
+  style?: CSSProperties;
 }
-const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title }) => {
+const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title, style }) => {
   //redux
   const dispatch = useDispatch();
   const header = useSelector((state: any) => state.Header);
@@ -47,7 +49,7 @@ const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title }) => {
     })();
   }, [user]);
   return (
-    <Styles.MainContainer>
+    <Styles.MainContainer style={style}>
       <FaHome style={{ position: 'absolute', left: 10 }} />
 
       <Styles.Button

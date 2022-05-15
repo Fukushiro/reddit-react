@@ -1,5 +1,6 @@
-import { failNoReturn, IRetorno, success } from '.';
+import { failNoReturn, IRetorno, RetornoPadrao, success } from '.';
 import { apiReddit } from './apiReddit';
+
 //get subreddit by id
 export async function getSubredditService({
   id,
@@ -64,6 +65,46 @@ export async function callGetSubredditPostsService({
   if (funcionou) {
     return {
       posts: response.data.posts,
+    };
+  }
+  return null;
+}
+// get subreddit by name
+
+export async function getSubredditByNameService({
+  name,
+}: {
+  name: string;
+}): Promise<IRetorno> {
+  try {
+    const RESPONSE = await apiReddit.get(`subreddit/get/name/${name}`);
+    return success(RESPONSE);
+  } catch (e) {
+    return failNoReturn();
+  }
+}
+
+interface IGetSubredditByName {
+  id: number;
+  name: string;
+  subscribes: number;
+}
+
+interface IGetSubredditByNameService {
+  subreddits: Array<IGetSubredditByName>;
+}
+
+export async function callGetSubredditByName({
+  name,
+}: {
+  name: string;
+}): Promise<IGetSubredditByNameService | null> {
+  const { response, funcionou } = await getSubredditByNameService({
+    name: name,
+  });
+  if (funcionou) {
+    return {
+      subreddits: response.data.subreddit,
     };
   }
   return null;

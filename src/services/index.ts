@@ -2,6 +2,11 @@ interface IRetorno {
   response: any;
   funcionou: boolean;
 }
+
+export interface RetornoPadrao {
+  message?: string;
+  erro?: boolean;
+}
 export function success(response: any) {
   return { response: response, funcionou: true };
 }

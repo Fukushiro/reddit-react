@@ -70,6 +70,8 @@ const Card: React.FC<ICard> = ({ post, style }) => {
               setUpordown(1);
               changeAvaliation(1);
             } else {
+              console.log('Aqui');
+
               setUpordown(0);
               changeAvaliation(0);
             }

@@ -8,22 +8,39 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { urls } from '../../route';
 import Search from './Search';
+import { useMediaQuery } from '@react-hook/media-query';
+import { small } from '../../constants/sizes';
 interface IHeader {}
 const Header: React.FC<IHeader> = () => {
+  // media query
+  const smallQuery = useMediaQuery(`only screen and (max-width: ${small}px)`);
+  //
   const navigate = useNavigate();
   const user: { user: { username: string; id: number }; logado: boolean } =
     useSelector((v: any) => v.User);
   return (
     <Styles.MainContainer>
-      <Styles.Logo
-        width={50 + 75}
-        height={50}
-        onClick={() => {
-          navigate(urls.home);
-        }}
-      />
-      <DrawerMenu user={user} />
-      <Search />
+      <Styles.logoContainer>
+        {smallQuery ? (
+          <Styles.LogoSmall
+            width={40}
+            height={40}
+            onClick={() => {
+              navigate(urls.home);
+            }}
+          />
+        ) : (
+          <Styles.Logo
+            width={125}
+            height={50}
+            onClick={() => {
+              navigate(urls.home);
+            }}
+          />
+        )}
+      </Styles.logoContainer>
+      <Styles.Drawer user={user} style={{ marginRight: 10, flex: 0.25 }} />
+      <Styles.SearchBar style={{ flex: 0.25 }} />
     </Styles.MainContainer>
   );
 };

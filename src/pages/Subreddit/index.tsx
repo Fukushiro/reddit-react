@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import Header from "../../components/Header";
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import Header from '../../components/Header';
 import {
   callGetSubredditPostsService,
   callGetSubredditService,
   getSubredditService,
   IGetSubredditService,
-} from "../../services/subreddit.service";
-import * as Styles from "./styles";
+} from '../../services/subreddit.service';
+import * as Styles from './styles';
 // import { Container } from './styles';
-import { IGetSubredditPostsService } from "./../../services/subreddit.service";
-import Card from "../../components/Card";
-import { urls } from "../../route";
-import Button from "../../components/Button";
+import { IGetSubredditPostsService } from './../../services/subreddit.service';
+import Card from '../../components/Card';
+import { urls } from '../../route';
+import Button from '../../components/Button';
 
 const Subreddit: React.FC = () => {
   //useStates
@@ -48,7 +48,7 @@ const Subreddit: React.FC = () => {
   function handlerCreatePost() {
     if (subredditid) {
       navigate(
-        urls.createPost.replace(":subredditid", subredditid?.toString())
+        urls.createPost.replace(':subredditid', subredditid?.toString())
       );
     }
   }
@@ -84,8 +84,8 @@ const Subreddit: React.FC = () => {
 
             <Button
               onClick={handlerCreatePost}
-              text={"Create post"}
-              style={{ width: "100%" }}
+              text={'Create post'}
+              style={{ width: '100%' }}
             />
           </Styles.RightContainerAbout>
         </Styles.RightContainer>
