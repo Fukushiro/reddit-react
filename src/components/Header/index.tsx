@@ -7,6 +7,7 @@ import * as Styles from './styles';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { urls } from '../../route';
+import Search from './Search';
 interface IHeader {}
 const Header: React.FC<IHeader> = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Header: React.FC<IHeader> = () => {
         }}
       />
       <DrawerMenu user={user} />
+      <Search />
     </Styles.MainContainer>
   );
 };

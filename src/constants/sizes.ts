@@ -1,5 +1,5 @@
-export const small = 200;
+export const small = 640;
 
-export const medium = 500;
+export const medium = 1007;
 
-export const large = 800;
+export const large = 2000;

@@ -12,6 +12,7 @@ export const MainContainer = styled.div`
   position: sticky;
   z-index: 100000;
   top: 0;
+  align-items: center;
 `;
 
 export const Logo = styled(flavor.images.logo)`

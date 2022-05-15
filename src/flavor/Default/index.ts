@@ -14,6 +14,9 @@ interface IFlavor {
     backgroundCard: string;
     // textField
     textFieldTextColor: string;
+    //header search
+    textSearchBackground: string;
+    textSearchFontColor: string;
   };
 
   strings: {
@@ -37,6 +40,8 @@ export const Default: IFlavor = {
     background: '#13171a',
     backgroundCard: '#2b2b2c',
     textFieldTextColor: '#ffffff',
+    textSearchBackground: '#1e2122',
+    textSearchFontColor: '#40403e',
   },
   strings: {
     test: 'teste',

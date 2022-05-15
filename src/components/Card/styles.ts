@@ -12,7 +12,7 @@ export const MainContainer = styled.div`
     margin-top: 20px;
   }
   @media (max-width: ${small}px) {
-    width: 100%;
+    width: 95%;
   }
 `;
 
