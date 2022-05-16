@@ -22,7 +22,7 @@ export const Container = styled.div`
   /* background-color: red; */
   /* background-color: red; */
   position: absolute;
-  top: 50px;
+  top: 37px;
   overflow-y: scroll;
   background-color: #141615;
   ::-webkit-scrollbar {
@@ -49,5 +49,23 @@ export const Input = styled.input`
   flex: 0.8;
   &::placeholder {
     color: ${flavor.colors.textSearchPlaceholderFontColor};
+  }
+`;
+
+export const ButtonDiv = styled.div``;
+export const ButtonInside = styled.button`
+  background-color: #141615;
+  color: white;
+  border: none;
+  width: 100%;
+  height: 35px;
+
+  text-align: start;
+  padding-left: 35px;
+  cursor: pointer;
+  /* background-color: blue; */
+
+  &:hover {
+    background-color: #1d2122;
   }
 `;

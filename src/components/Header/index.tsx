@@ -11,8 +11,11 @@ import Search from './Search';
 import { useMediaQuery } from '@react-hook/media-query';
 import { small } from '../../constants/sizes';
 import { IGetSubredditService } from '../../services/subreddit.service';
-interface IHeader {}
-const Header: React.FC<IHeader> = ({}) => {
+interface IHeader {
+  currentSubreddit?: IGetSubredditService;
+  isSubreddit?: boolean;
+}
+const Header: React.FC<IHeader> = ({ currentSubreddit, isSubreddit }) => {
   // media query
   const smallQuery = useMediaQuery(`only screen and (max-width: ${small}px)`);
   //
@@ -40,7 +43,11 @@ const Header: React.FC<IHeader> = ({}) => {
           />
         )}
       </Styles.logoContainer>
-      <Styles.Drawer user={user} style={{ marginRight: 10, flex: 0.25 }} />
+      <Styles.Drawer
+        user={user}
+        title={isSubreddit ? currentSubreddit?.nome : 'Home'}
+        style={{ marginRight: 10, flex: 0.25 }}
+      />
       <Styles.SearchBar style={{ flex: 0.25 }} />
     </Styles.MainContainer>
   );

@@ -8,6 +8,7 @@ import { urls } from '../../../route';
 import { useDispatch, useSelector } from 'react-redux';
 import { HeaderTypes } from '../../../store/ducks/Header';
 import { CSSProperties } from 'styled-components';
+import { IGetSubredditService } from '../../../services/subreddit.service';
 interface IDrawerMenu {
   user: { user: { username: string; id: number }; logado: boolean } | null;
   title?: string;

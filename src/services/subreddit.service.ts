@@ -89,9 +89,9 @@ export async function getSubredditByNameService({
   }
 }
 
-interface IGetSubredditByName {
+export interface IGetSubredditByName {
   id: number;
-  name: string;
+  nome: string;
   subscribes: number;
 }
 
