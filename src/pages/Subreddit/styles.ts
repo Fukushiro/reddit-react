@@ -42,11 +42,23 @@ export const InfosTextContainer = styled.div`
   width: 500px;
 `;
 
+export const InfosTextLabelDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 450px;
+  /* background-color: red; */
+`;
+
 export const InfosTextLabel = styled.h1`
   font-size: 28px;
   font-weight: 700;
   line-height: 32px;
+  width: 300px;
+  /* background-color: blue; */
 `;
+
 export const InfosTextTitle = styled.h2`
   margin-top: -10px;
   color: #605d54;

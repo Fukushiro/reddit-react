@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CSSProperties } from 'styled-components';
+import { urls } from '../../../route';
 import {
   callGetSubredditByName,
   IGetSubredditByName,
@@ -10,6 +12,7 @@ interface ISearch {
   style?: CSSProperties;
 }
 const Search: React.FC<ISearch> = ({ style }) => {
+  const navigate = useNavigate();
   const [text, setText] = useState<string>('');
   const [subReddits, setSubReddits] = useState<Array<IGetSubredditByName>>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
@@ -53,9 +56,12 @@ const Search: React.FC<ISearch> = ({ style }) => {
           <Styles.ButtonDiv key={index}>
             <Styles.ButtonInside
               onClick={() => {
-                // navigate(
-                //   urls.subreddit.replace(':subredditid', v.id.toString())
-                // );
+                navigate(
+                  urls.subreddit.replace(
+                    ':subredditid',
+                    subreddit.id.toString()
+                  )
+                );
                 // dispatch({ type: HeaderTypes.SET_OPEN_SUBREDDITS });
                 console.log(subreddit.nome);
               }}

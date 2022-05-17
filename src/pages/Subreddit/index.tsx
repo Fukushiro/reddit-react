@@ -15,8 +15,12 @@ import { urls } from '../../route';
 import Button from '../../components/Button';
 import { Box, Modal, Typography } from '@mui/material';
 import CustomModal from '../../components/CustomModal';
+import { userJoinSubreddit } from '../../services/usersubreddit.service';
+import { useSelector } from 'react-redux';
 
 const Subreddit: React.FC = () => {
+  const user: { user: { username: string; id: number }; logado: boolean } =
+    useSelector((v: any) => v.User);
   //useStates
   const [subreddit, setSubreddit] = useState<IGetSubredditService>();
 
@@ -75,9 +79,22 @@ const Subreddit: React.FC = () => {
       <Styles.InfosContainer>
         <Styles.IconImage src="https://placeholder.pics/svg/100x100" />
         <Styles.InfosTextContainer>
-          <Styles.InfosTextLabel>
-            Sion is love, Sion is life
-          </Styles.InfosTextLabel>
+          <Styles.InfosTextLabelDiv>
+            <Styles.InfosTextLabel>
+              Sion is love, Sion is life
+            </Styles.InfosTextLabel>
+            <Button
+              onClick={() => {
+                if (subreddit) {
+                  userJoinSubreddit({
+                    subredditid: subreddit.id,
+                    userid: user.user.id,
+                  });
+                }
+              }}
+              text="Join"
+            />
+          </Styles.InfosTextLabelDiv>
           <Styles.InfosTextTitle>r/{subreddit?.nome}</Styles.InfosTextTitle>
         </Styles.InfosTextContainer>
       </Styles.InfosContainer>
