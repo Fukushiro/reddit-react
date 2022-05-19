@@ -42,6 +42,8 @@ const Subreddit: React.FC = () => {
   //useEffect
   // refresh current subreddit
   useEffect(() => {
+    console.log('Reloaded');
+
     (async () => {
       if (subreddit) {
         const { message, funcionou, obj } = await userIsInSubreddit({
@@ -99,10 +101,10 @@ const Subreddit: React.FC = () => {
       });
 
       if (funcionou) {
-        setRefresh(!refresh);
       } else {
       }
       openModalText(message);
+      setRefresh(!refresh);
     }
   }
   function openModalText(text: string) {

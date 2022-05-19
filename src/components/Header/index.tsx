@@ -58,6 +58,7 @@ const Header: React.FC<IHeader> = ({
         user={user}
         title={isSubreddit ? currentSubreddit?.nome : 'Home'}
         style={{ marginRight: 10, flex: 0.25 }}
+        refresh
       />
       <Styles.SearchBar style={{ flex: 0.25 }} />
     </Styles.MainContainer>

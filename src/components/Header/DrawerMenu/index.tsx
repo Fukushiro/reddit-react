@@ -13,8 +13,9 @@ interface IDrawerMenu {
   user: { user: { username: string; id: number }; logado: boolean } | null;
   title?: string;
   style?: CSSProperties;
+  refresh?: boolean;
 }
-const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title, style }) => {
+const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title, style, refresh }) => {
   //redux
   const dispatch = useDispatch();
   const header = useSelector((state: any) => state.Header);
@@ -47,7 +48,7 @@ const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title, style }) => {
         }
       }
     })();
-  }, [user]);
+  }, [user, refresh]);
   return (
     <Styles.MainContainer style={style}>
       <FaHome style={{ position: 'absolute', left: 10 }} />
