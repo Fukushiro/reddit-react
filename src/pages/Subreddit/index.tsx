@@ -126,7 +126,10 @@ const Subreddit: React.FC = () => {
             <Styles.InfosTextLabel>
               Sion is love, Sion is life
             </Styles.InfosTextLabel>
-            <Button onClick={joinSubreddit} text="Join" />
+            <Button
+              onClick={joinSubreddit}
+              text={!!userInSubreddit ? 'Leave' : 'Join'}
+            />
           </Styles.InfosTextLabelDiv>
           <Styles.InfosTextTitle>r/{subreddit?.nome}</Styles.InfosTextTitle>
         </Styles.InfosTextContainer>
