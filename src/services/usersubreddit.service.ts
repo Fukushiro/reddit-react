@@ -1,5 +1,9 @@
-import { failNoReturn, IRetorno, success } from '.';
+import { failNoReturn, IRetorno, RetornoPadrao, success } from '.';
 import { apiReddit } from './apiReddit';
+
+interface IUserJoinSubreddit extends IRetorno {
+  obj?: {};
+}
 
 export async function userJoinSubreddit({
   subredditid,
@@ -7,15 +11,19 @@ export async function userJoinSubreddit({
 }: {
   userid: number;
   subredditid: number;
-}): Promise<IRetorno> {
+}): Promise<IUserJoinSubreddit> {
   try {
-    const RESPONSE = await apiReddit.post('/usersubreddit/create', {
+    const RESPONSE = await apiReddit.post('usersubreddit/create', {
       userid: userid,
       subredditid: subredditid,
     });
-    return success(RESPONSE);
-  } catch (e) {
-    return failNoReturn();
+    return success(RESPONSE, RESPONSE.data.message);
+  } catch (e: any) {
+    let returnMessage = '';
+    if (e.response) {
+      returnMessage += `${e.response.data.message}`;
+    }
+    return failNoReturn(returnMessage);
   }
 }
 
@@ -38,7 +46,9 @@ export async function userIsInSubreddit({
     );
     console.log(RESPONSE.data);
 
-    return success(RESPONSE, 'Coisa', { isInSubreddit: true });
+    return success(RESPONSE, 'Coisa', {
+      isInSubreddit: RESPONSE.data.userIsInSubreddit,
+    });
   } catch (e) {
     return failNoReturn('erro userIsInSubreddit ' + e);
   }

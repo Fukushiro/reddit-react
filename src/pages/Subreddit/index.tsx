@@ -25,9 +25,13 @@ const Subreddit: React.FC = () => {
   const user: { user: { username: string; id: number }; logado: boolean } =
     useSelector((v: any) => v.User);
   //useStates
+  const [refresh, setRefresh] = useState<boolean>(false);
   const [subreddit, setSubreddit] = useState<IGetSubredditService>();
 
   const [posts, setPosts] = useState<IGetSubredditPostsService>();
+  const [userInSubreddit, setUserInSubreddit] = useState<boolean>(false);
+  const [refreshUserInSubreddit, setRefreshUserInSubreddit] =
+    useState<boolean>(false);
   // modals
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [modalMessage, setModalMessage] = useState<string>('');
@@ -46,12 +50,15 @@ const Subreddit: React.FC = () => {
         });
 
         if (funcionou) {
+          if (!!obj?.isInSubreddit) {
+            setUserInSubreddit(obj?.isInSubreddit);
+          }
         } else {
           openModalText(message);
         }
       }
     })();
-  }, [subreddit, user]);
+  }, [subreddit, user, refreshUserInSubreddit, refresh]);
   useEffect(() => {
     (async () => {
       if (subredditid) {
@@ -74,7 +81,7 @@ const Subreddit: React.FC = () => {
         }
       }
     })();
-  }, [subredditid]);
+  }, [subredditid, refresh]);
   //functions
   //create post button handler
   function handlerCreatePost() {
@@ -82,6 +89,20 @@ const Subreddit: React.FC = () => {
       navigate(
         urls.createPost.replace(':subredditid', subredditid?.toString())
       );
+    }
+  }
+  async function joinSubreddit() {
+    if (subreddit) {
+      const { message, funcionou } = await userJoinSubreddit({
+        subredditid: subreddit.id,
+        userid: user.user.id,
+      });
+
+      if (funcionou) {
+        setRefresh(!refresh);
+      } else {
+      }
+      openModalText(message);
     }
   }
   function openModalText(text: string) {
@@ -96,7 +117,7 @@ const Subreddit: React.FC = () => {
         title="Retorno"
         text={modalMessage}
       />
-      <Header isSubreddit currentSubreddit={subreddit} />
+      <Header isSubreddit currentSubreddit={subreddit} refresh />
       <Styles.BackgroundImage src="https://placeholder.pics/svg/1000x900" />
       <Styles.InfosContainer>
         <Styles.IconImage src="https://placeholder.pics/svg/100x100" />
@@ -105,17 +126,7 @@ const Subreddit: React.FC = () => {
             <Styles.InfosTextLabel>
               Sion is love, Sion is life
             </Styles.InfosTextLabel>
-            <Button
-              onClick={() => {
-                if (subreddit) {
-                  userJoinSubreddit({
-                    subredditid: subreddit.id,
-                    userid: user.user.id,
-                  });
-                }
-              }}
-              text="Join"
-            />
+            <Button onClick={joinSubreddit} text="Join" />
           </Styles.InfosTextLabelDiv>
           <Styles.InfosTextTitle>r/{subreddit?.nome}</Styles.InfosTextTitle>
         </Styles.InfosTextContainer>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { flavor } from '../../flavor';
 import DrawerMenu from './DrawerMenu';
 import * as Styles from './styles';
@@ -14,14 +14,25 @@ import { IGetSubredditService } from '../../services/subreddit.service';
 interface IHeader {
   currentSubreddit?: IGetSubredditService;
   isSubreddit?: boolean;
+  refresh?: boolean;
 }
-const Header: React.FC<IHeader> = ({ currentSubreddit, isSubreddit }) => {
+const Header: React.FC<IHeader> = ({
+  currentSubreddit,
+  isSubreddit,
+  refresh,
+}) => {
+  //useEffect
+  const [refreshI, setRefreshI] = useState<boolean>(false);
   // media query
   const smallQuery = useMediaQuery(`only screen and (max-width: ${small}px)`);
   //
   const navigate = useNavigate();
   const user: { user: { username: string; id: number }; logado: boolean } =
     useSelector((v: any) => v.User);
+  useEffect(() => {
+    setRefreshI(!refreshI);
+    console.log('Aqui');
+  }, [refresh]);
   return (
     <Styles.MainContainer>
       <Styles.logoContainer>
