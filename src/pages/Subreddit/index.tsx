@@ -15,7 +15,10 @@ import { urls } from '../../route';
 import Button from '../../components/Button';
 import { Box, Modal, Typography } from '@mui/material';
 import CustomModal from '../../components/CustomModal';
-import { userJoinSubreddit } from '../../services/usersubreddit.service';
+import {
+  userIsInSubreddit,
+  userJoinSubreddit,
+} from '../../services/usersubreddit.service';
 import { useSelector } from 'react-redux';
 
 const Subreddit: React.FC = () => {
@@ -34,6 +37,21 @@ const Subreddit: React.FC = () => {
   const navigate = useNavigate();
   //useEffect
   // refresh current subreddit
+  useEffect(() => {
+    (async () => {
+      if (subreddit) {
+        const { message, funcionou, obj } = await userIsInSubreddit({
+          subredditid: subreddit?.id,
+          userid: user.user.id,
+        });
+
+        if (funcionou) {
+        } else {
+          openModalText(message);
+        }
+      }
+    })();
+  }, [subreddit, user]);
   useEffect(() => {
     (async () => {
       if (subredditid) {
@@ -65,6 +83,10 @@ const Subreddit: React.FC = () => {
         urls.createPost.replace(':subredditid', subredditid?.toString())
       );
     }
+  }
+  function openModalText(text: string) {
+    setModalOpen(true);
+    setModalMessage(text);
   }
   return (
     <Styles.MainContainer>

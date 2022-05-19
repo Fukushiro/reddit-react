@@ -18,3 +18,28 @@ export async function userJoinSubreddit({
     return failNoReturn();
   }
 }
+
+// usersubreddit/isInSubreddit/userid/{userid}/subredditid/{subredditid}
+interface IUserIsInSubreddit extends IRetorno {
+  obj?: {
+    isInSubreddit: boolean;
+  };
+}
+export async function userIsInSubreddit({
+  subredditid,
+  userid,
+}: {
+  userid: number;
+  subredditid: number;
+}): Promise<IUserIsInSubreddit> {
+  try {
+    const RESPONSE = await apiReddit.get(
+      `usersubreddit/isInSubreddit/userid/${userid}/subredditid/${subredditid}`
+    );
+    console.log(RESPONSE.data);
+
+    return success(RESPONSE, 'Coisa', { isInSubreddit: true });
+  } catch (e) {
+    return failNoReturn('erro userIsInSubreddit ' + e);
+  }
+}

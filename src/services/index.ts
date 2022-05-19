@@ -8,11 +8,12 @@ export interface RetornoPadrao {
   message?: string;
   erro?: boolean;
 }
-export function success(response: any, message?: string) {
+export function success(response: any, message?: string, obj?: any) {
   return {
     response: response,
     funcionou: true,
     message: !!message ? message : '',
+    obj: obj,
   };
 }
 

@@ -41,7 +41,6 @@ const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title, style }) => {
             return { id: v.id, nome: v.nome };
           }
         );
-        console.log(SUBREDDITS_TRATADOS);
 
         if (SUBREDDITS_TRATADOS !== undefined) {
           setSubreddits(SUBREDDITS_TRATADOS);

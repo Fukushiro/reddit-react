@@ -63,7 +63,6 @@ const Search: React.FC<ISearch> = ({ style }) => {
                   )
                 );
                 // dispatch({ type: HeaderTypes.SET_OPEN_SUBREDDITS });
-                console.log(subreddit.nome);
               }}
             >
               {subreddit.nome}
