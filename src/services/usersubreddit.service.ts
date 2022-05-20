@@ -53,3 +53,28 @@ export async function userIsInSubreddit({
     return failNoReturn('erro userIsInSubreddit ' + e);
   }
 }
+
+export async function userRemoveSubreddit({
+  subredditid,
+  userid,
+}: {
+  userid: number;
+  subredditid: number;
+}): Promise<IRetorno> {
+  console.log(
+    `usersubreddit/remove/userid/${userid}/subredditid/${subredditid}`
+  );
+  try {
+    const RESPONSE = await apiReddit.delete(
+      `usersubreddit/remove/userid/${userid}/subredditid/${subredditid}`
+    );
+
+    console.log(RESPONSE.data);
+
+    return success(RESPONSE, RESPONSE.data.message, {
+      isInSubreddit: RESPONSE.data.userIsInSubreddit,
+    });
+  } catch (e: any) {
+    return failNoReturn(e.response.data.message);
+  }
+}

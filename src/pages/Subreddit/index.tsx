@@ -18,6 +18,7 @@ import CustomModal from '../../components/CustomModal';
 import {
   userIsInSubreddit,
   userJoinSubreddit,
+  userRemoveSubreddit,
 } from '../../services/usersubreddit.service';
 import { useSelector } from 'react-redux';
 
@@ -42,8 +43,6 @@ const Subreddit: React.FC = () => {
   //useEffect
   // refresh current subreddit
   useEffect(() => {
-    console.log('Reloaded');
-
     (async () => {
       if (subreddit) {
         const { message, funcionou, obj } = await userIsInSubreddit({
@@ -52,7 +51,7 @@ const Subreddit: React.FC = () => {
         });
 
         if (funcionou) {
-          if (!!obj?.isInSubreddit) {
+          if (obj?.isInSubreddit != null) {
             setUserInSubreddit(obj?.isInSubreddit);
           }
         } else {
@@ -107,6 +106,28 @@ const Subreddit: React.FC = () => {
       setRefresh(!refresh);
     }
   }
+  async function leaveSubreddit() {
+    if (subreddit) {
+      const { funcionou, message, response } = await userRemoveSubreddit({
+        subredditid: subreddit.id,
+        userid: user.user.id,
+      });
+
+      if (funcionou) {
+      } else {
+      }
+      openModalText(message);
+      setRefresh(!refresh);
+    }
+  }
+  async function joinOnClick() {
+    // setUserInSubreddit(!userInSubreddit);
+    if (userInSubreddit) {
+      leaveSubreddit();
+    } else {
+      joinSubreddit();
+    }
+  }
   function openModalText(text: string) {
     setModalOpen(true);
     setModalMessage(text);
@@ -129,7 +150,7 @@ const Subreddit: React.FC = () => {
               Sion is love, Sion is life
             </Styles.InfosTextLabel>
             <Button
-              onClick={joinSubreddit}
+              onClick={joinOnClick}
               text={!!userInSubreddit ? 'Leave' : 'Join'}
             />
           </Styles.InfosTextLabelDiv>
