@@ -140,7 +140,7 @@ const Subreddit: React.FC = () => {
         title="Retorno"
         text={modalMessage}
       />
-      <Header isSubreddit currentSubreddit={subreddit} refresh />
+      <Header isSubreddit currentSubreddit={subreddit} refresh={refresh} />
       <Styles.BackgroundImage src="https://placeholder.pics/svg/1000x900" />
       <Styles.InfosContainer>
         <Styles.IconImage src="https://placeholder.pics/svg/100x100" />

@@ -22,7 +22,6 @@ const Header: React.FC<IHeader> = ({
   refresh,
 }) => {
   //useEffect
-  const [refreshI, setRefreshI] = useState<boolean>(false);
   // media query
   const smallQuery = useMediaQuery(`only screen and (max-width: ${small}px)`);
   //
@@ -30,7 +29,6 @@ const Header: React.FC<IHeader> = ({
   const user: { user: { username: string; id: number }; logado: boolean } =
     useSelector((v: any) => v.User);
   useEffect(() => {
-    setRefreshI(!refreshI);
     console.log('Aqui');
   }, [refresh]);
   return (
@@ -58,7 +56,7 @@ const Header: React.FC<IHeader> = ({
         user={user}
         title={isSubreddit ? currentSubreddit?.nome : 'Home'}
         style={{ marginRight: 10, flex: 0.25 }}
-        refresh
+        refresh={refresh}
       />
       <Styles.SearchBar style={{ flex: 0.25 }} />
     </Styles.MainContainer>
