@@ -1,10 +1,10 @@
-import { ReactComponent as Logo } from '../../img/reddit-logo.svg';
+import { ReactComponent as Logo } from "../../img/reddit-logo.svg";
 import {
   IoIosArrowDropdownCircle,
   IoIosArrowDropdown,
   IoIosArrowDropupCircle,
   IoIosArrowDropup,
-} from 'react-icons/io';
+} from "react-icons/io";
 interface IFlavor {
   colors: {
     color1: string;
@@ -14,6 +14,7 @@ interface IFlavor {
     backgroundCard: string;
     // textField
     textFieldTextColor: string;
+    cardBackground: string;
   };
 
   strings: {
@@ -31,15 +32,16 @@ interface IFlavor {
 
 export const Default: IFlavor = {
   colors: {
-    color1: 'red',
-    color2: 'green',
-    color3: 'blue',
-    background: '#13171a',
-    backgroundCard: '#2b2b2c',
-    textFieldTextColor: '#ffffff',
+    color1: "red",
+    color2: "green",
+    color3: "blue",
+    background: "#13171a",
+    backgroundCard: "#2b2b2c",
+    textFieldTextColor: "#ffffff",
+    cardBackground: "#191f25",
   },
   strings: {
-    test: 'teste',
+    test: "teste",
   },
   images: { logo: Logo },
   icons: {

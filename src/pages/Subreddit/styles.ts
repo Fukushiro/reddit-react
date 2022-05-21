@@ -58,7 +58,7 @@ export const InfosTextTitle = styled.h2`
 export const BodyContainer = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: #191f25;
+  /* background-color: #191f25; */
   justify-content: center;
   align-items: flex-start;
 `;

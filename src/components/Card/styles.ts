@@ -4,7 +4,7 @@ import { flavor } from "../../flavor";
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: #141616;
+  background-color: ${flavor.colors.cardBackground};
   width: 640px;
   border: 1px solid #4a4845;
   &:first-child {

@@ -54,8 +54,11 @@ const Subreddit: React.FC = () => {
   }
   return (
     <Styles.MainContainer>
+      {/* cabeçalho */}
       <Header />
+      {/* background image */}
       <Styles.BackgroundImage src="https://placeholder.pics/svg/1000x900" />
+      {/* Icone e titulo do subreddit */}
       <Styles.InfosContainer>
         <Styles.IconImage src="https://placeholder.pics/svg/100x100" />
         <Styles.InfosTextContainer>
@@ -65,12 +68,15 @@ const Subreddit: React.FC = () => {
           <Styles.InfosTextTitle>r/{subreddit?.nome}</Styles.InfosTextTitle>
         </Styles.InfosTextContainer>
       </Styles.InfosContainer>
+      {/* corpo da pagina */}
       <Styles.BodyContainer>
+        {/* container da esquerda */}
         <Styles.LeftContainer>
           {posts?.posts.map((v, i) => {
             return <Card post={v} style={{ marginBottom: 10 }} key={i} />;
           })}
         </Styles.LeftContainer>
+        {/* container da direita */}
         <Styles.RightContainer>
           <Styles.RightContainerAbout>
             <Styles.RightContainerAboutTitle>

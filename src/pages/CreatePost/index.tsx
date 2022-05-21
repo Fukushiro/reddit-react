@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
+import ButtonsBar from "../../components/ButtonsBar";
 import Header from "../../components/Header";
 import TextInput from "../../components/TextInput";
 import { urls } from "../../route";
@@ -18,6 +19,9 @@ const CreatePost: React.FC = () => {
   const [subreddit, setSubreddit] = useState<IGetSubredditService>();
   //form
   const [title, setTitle] = useState<string>();
+  const [text, setText] = useState<string>();
+  //button bar
+  const [selectedButton, setSelectedButton] = useState<number>(0);
   //navigation
   const { subredditid } = useParams();
   const navigate = useNavigate();
@@ -40,7 +44,14 @@ const CreatePost: React.FC = () => {
   //functions
   async function createPost() {
     if (!!subreddit && !!title) {
-      await callCreatePostService({ subredditid: subreddit.id, title: title });
+      if (!text && selectedButton === 0) {
+        return;
+      }
+      await callCreatePostService({
+        subredditid: subreddit.id,
+        title: title,
+        text: !!text ? text : undefined,
+      });
       navigate(urls.subreddit.replace(":subredditid", subreddit.id.toString()));
     }
   }
@@ -53,13 +64,33 @@ const CreatePost: React.FC = () => {
             Create a post
           </Styles.CreatePostContainerTitle>
           <Styles.CreatePostContainerForm>
+            <ButtonsBar
+              botoes={["Post", "Image", "Link", "Poll"]}
+              width={"100%"}
+              selected={selectedButton}
+              setSelected={setSelectedButton}
+            />
+            {/* titulo */}
             <TextInput
               value={title}
               setValue={setTitle}
               placeholder="Title"
-              styles={{ width: "100%" }}
+              styles={{ width: "95%", marginTop: "10px" }}
             />
+            {/* text area para colocar texto */}
+            {selectedButton === 0 && (
+              <Styles.CreatePostContainerFormTextArea
+                placeholder="Text"
+                value={text}
+                onChange={(v) => {
+                  setText(v.target.value);
+                }}
+                required={selectedButton === 0}
+              />
+            )}
+            {/* container para botões */}
             <Styles.CreatePostContainerFormButtonDiv>
+              {/* botão de postar */}
               <Button onClick={createPost} text="Criar post" />
             </Styles.CreatePostContainerFormButtonDiv>
           </Styles.CreatePostContainerForm>

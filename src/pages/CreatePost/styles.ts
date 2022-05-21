@@ -24,9 +24,26 @@ export const CreatePostContainerTitle = styled.h3`
 export const CreatePostContainerForm = styled.div`
   background-color: #1a1a1b;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const CreatePostContainerFormTextArea = styled.textarea`
+  width: 95%;
+  margin-top: 10px;
+  background-color: #1a1a1b;
+  border: 1px solid grey;
+  padding: 10px;
+  color: gray;
+  &:focus {
+    border: 1px solid white;
+  }
 `;
 
 export const CreatePostContainerFormButtonDiv = styled.div`
   display: flex;
+
+  width: 100%;
   justify-content: flex-end;
 `;
