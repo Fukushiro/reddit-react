@@ -1,3 +1,4 @@
+// <<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
@@ -6,17 +7,27 @@ import Header from "../../components/Header";
 import TextInput from "../../components/TextInput";
 import { urls } from "../../route";
 import { callCreatePostService } from "../../services/post.service";
+// =======
+// import React, { useEffect, useState } from 'react';
+// import { useNavigate, useParams } from 'react-router-dom';
+// import Button from '../../components/Button';
+// import Header from '../../components/Header';
+// import TextInput from '../../components/TextInput';
+// import { urls } from '../../route';
+// import { callCreatePostService } from '../../services/post.service';
+// >>>>>>> 8295daaf9117960950154e57f49089cfdb9c87cf
 import {
   callGetSubredditPostsService,
   callGetSubredditService,
   IGetSubredditService,
-} from "../../services/subreddit.service";
-import * as Styles from "./styles";
+} from '../../services/subreddit.service';
+import * as Styles from './styles';
 // import { Container } from './styles';
 
 const CreatePost: React.FC = () => {
   //useStates
   const [subreddit, setSubreddit] = useState<IGetSubredditService>();
+  const [hasText, setHasText] = useState<boolean>(false);
   //form
   const [title, setTitle] = useState<string>();
   const [text, setText] = useState<string>();
@@ -32,7 +43,7 @@ const CreatePost: React.FC = () => {
         const subreddit = await callGetSubredditService({
           id: Number(subredditid),
         });
-        if (subreddit != null) {
+        if (!subreddit.erro) {
           setSubreddit(subreddit);
           const posts = await callGetSubredditPostsService({
             id: Number(subredditid),
@@ -44,6 +55,7 @@ const CreatePost: React.FC = () => {
   //functions
   async function createPost() {
     if (!!subreddit && !!title) {
+// <<<<<<< HEAD
       if (!text && selectedButton === 0) {
         return;
       }
@@ -53,6 +65,10 @@ const CreatePost: React.FC = () => {
         text: !!text ? text : undefined,
       });
       navigate(urls.subreddit.replace(":subredditid", subreddit.id.toString()));
+// =======
+//       await callCreatePostService({ subredditid: subreddit.id, title: title });
+//       navigate(urls.subreddit.replace(':subredditid', subreddit.id.toString()));
+// >>>>>>> 8295daaf9117960950154e57f49089cfdb9c87cf
     }
   }
   return (
@@ -75,7 +91,11 @@ const CreatePost: React.FC = () => {
               value={title}
               setValue={setTitle}
               placeholder="Title"
-              styles={{ width: "95%", marginTop: "10px" }}
+// <<<<<<< HEAD
+//               styles={{ width: "95%", marginTop: "10px" }}
+// =======
+              styles={{ width: '100%' }}
+{/* >>>>>>> 8295daaf9117960950154e57f49089cfdb9c87cf */}
             />
             {/* text area para colocar texto */}
             {selectedButton === 0 && (

@@ -54,7 +54,7 @@ export const ButtonInside = styled.button`
 `;
 
 export const Container = styled.div`
-  width: 250px;
+  width: 100%;
   height: 450px;
   color: white;
 

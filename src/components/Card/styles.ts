@@ -1,14 +1,23 @@
 import styled from "styled-components";
+import { small } from "../../constants/sizes";
 import { flavor } from "../../flavor";
 
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
+  /* <<<<<<< HEAD */
   background-color: ${flavor.colors.cardBackground};
   width: 640px;
+  /* =======
+  background-color: #141616;
+  width: 90%;
+>>>>>>> 8295daaf9117960950154e57f49089cfdb9c87cf */
   border: 1px solid #4a4845;
   &:first-child {
     margin-top: 20px;
+  }
+  @media (max-width: ${small}px) {
+    width: 95%;
   }
 `;
 

@@ -1,5 +1,6 @@
-import { failNoReturn, IRetorno, success } from '.';
+import { failNoReturn, IRetorno, RetornoPadrao, success } from '.';
 import { apiReddit } from './apiReddit';
+
 //get subreddit by id
 export async function getSubredditService({
   id,
@@ -13,7 +14,7 @@ export async function getSubredditService({
     return failNoReturn();
   }
 }
-export interface IGetSubredditService {
+export interface IGetSubredditService extends RetornoPadrao {
   id: number;
   nome: string;
 }
@@ -21,7 +22,7 @@ export async function callGetSubredditService({
   id,
 }: {
   id: number;
-}): Promise<IGetSubredditService | null> {
+}): Promise<IGetSubredditService> {
   const { response, funcionou } = await getSubredditService({ id: id });
   if (funcionou) {
     return {
@@ -29,7 +30,12 @@ export async function callGetSubredditService({
       nome: response.data.subreddit.nome,
     };
   }
-  return null;
+  return {
+    id: -1,
+    nome: '',
+    erro: true,
+    message: `Erro ${response}`,
+  };
 }
 
 //get posts
@@ -67,4 +73,52 @@ export async function callGetSubredditPostsService({
     };
   }
   return null;
+}
+// get subreddit by name
+
+export async function getSubredditByNameService({
+  name,
+}: {
+  name: string;
+}): Promise<IRetorno> {
+  try {
+    const RESPONSE = await apiReddit.get(`subreddit/get/name/${name}`);
+    return success(RESPONSE);
+  } catch (e) {
+    return failNoReturn();
+  }
+}
+
+export interface IGetSubredditByName {
+  id: number;
+  nome: string;
+  subscribes: number;
+}
+
+interface IGetSubredditByNameService extends RetornoPadrao {
+  retorno?: {
+    subreddits: Array<IGetSubredditByName>;
+  };
+}
+
+export async function callGetSubredditByName({
+  name,
+}: {
+  name: string;
+}): Promise<IGetSubredditByNameService> {
+  const { response, funcionou } = await getSubredditByNameService({
+    name: name,
+  });
+  if (funcionou) {
+    return {
+      retorno: {
+        subreddits: response.data.subreddit,
+      },
+      message: 'Sucesso',
+    };
+  }
+  return {
+    erro: true,
+    message: 'Erro',
+  };
 }

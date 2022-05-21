@@ -1,4 +1,5 @@
 import { ReactComponent as Logo } from "../../img/reddit-logo.svg";
+import { ReactComponent as LogoSmall } from "../../img/reddit-logo-small.svg";
 import {
   IoIosArrowDropdownCircle,
   IoIosArrowDropdown,
@@ -15,13 +16,19 @@ interface IFlavor {
     // textField
     textFieldTextColor: string;
     cardBackground: string;
+    //header search
+    textSearchBackground: string;
+    textSearchFontColor: string;
+    textSearchPlaceholderFontColor: string;
+    textSearchIconColor: string;
+    textSearchBorderColor: string;
   };
 
   strings: {
     test: string;
   };
 
-  images: { logo: any };
+  images: { logo: any; logoSmall: any };
   icons: {
     whiteUpArrow: any;
     blackUpArrow: any;
@@ -39,11 +46,16 @@ export const Default: IFlavor = {
     backgroundCard: "#2b2b2c",
     textFieldTextColor: "#ffffff",
     cardBackground: "#191f25",
+    textSearchBackground: "#1e2122",
+    textSearchFontColor: "#b6b3ae",
+    textSearchPlaceholderFontColor: "#40403e",
+    textSearchIconColor: "#827d71",
+    textSearchBorderColor: "#6f675c",
   },
   strings: {
     test: "teste",
   },
-  images: { logo: Logo },
+  images: { logo: Logo, logoSmall: LogoSmall },
   icons: {
     blackDownArrow: IoIosArrowDropdown,
     blackUpArrow: IoIosArrowDropup,

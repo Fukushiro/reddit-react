@@ -7,11 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import { urls } from '../../../route';
 import { useDispatch, useSelector } from 'react-redux';
 import { HeaderTypes } from '../../../store/ducks/Header';
+import { CSSProperties } from 'styled-components';
+import { IGetSubredditService } from '../../../services/subreddit.service';
 interface IDrawerMenu {
   user: { user: { username: string; id: number }; logado: boolean } | null;
   title?: string;
+  style?: CSSProperties;
+  refresh?: boolean;
 }
-const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title }) => {
+const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title, style, refresh }) => {
   //redux
   const dispatch = useDispatch();
   const header = useSelector((state: any) => state.Header);
@@ -38,16 +42,15 @@ const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title }) => {
             return { id: v.id, nome: v.nome };
           }
         );
-        console.log(SUBREDDITS_TRATADOS);
 
         if (SUBREDDITS_TRATADOS !== undefined) {
           setSubreddits(SUBREDDITS_TRATADOS);
         }
       }
     })();
-  }, [user]);
+  }, [user, refresh]);
   return (
-    <Styles.MainContainer>
+    <Styles.MainContainer style={style}>
       <FaHome style={{ position: 'absolute', left: 10 }} />
 
       <Styles.Button
