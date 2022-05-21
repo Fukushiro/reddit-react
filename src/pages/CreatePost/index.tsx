@@ -20,8 +20,8 @@ import {
   callGetSubredditPostsService,
   callGetSubredditService,
   IGetSubredditService,
-} from '../../services/subreddit.service';
-import * as Styles from './styles';
+} from "../../services/subreddit.service";
+import * as Styles from "./styles";
 // import { Container } from './styles';
 
 const CreatePost: React.FC = () => {
@@ -55,7 +55,7 @@ const CreatePost: React.FC = () => {
   //functions
   async function createPost() {
     if (!!subreddit && !!title) {
-// <<<<<<< HEAD
+      // <<<<<<< HEAD
       if (!text && selectedButton === 0) {
         return;
       }
@@ -65,10 +65,10 @@ const CreatePost: React.FC = () => {
         text: !!text ? text : undefined,
       });
       navigate(urls.subreddit.replace(":subredditid", subreddit.id.toString()));
-// =======
-//       await callCreatePostService({ subredditid: subreddit.id, title: title });
-//       navigate(urls.subreddit.replace(':subredditid', subreddit.id.toString()));
-// >>>>>>> 8295daaf9117960950154e57f49089cfdb9c87cf
+      // =======
+      //       await callCreatePostService({ subredditid: subreddit.id, title: title });
+      //       navigate(urls.subreddit.replace(':subredditid', subreddit.id.toString()));
+      // >>>>>>> 8295daaf9117960950154e57f49089cfdb9c87cf
     }
   }
   return (
@@ -91,11 +91,7 @@ const CreatePost: React.FC = () => {
               value={title}
               setValue={setTitle}
               placeholder="Title"
-// <<<<<<< HEAD
-//               styles={{ width: "95%", marginTop: "10px" }}
-// =======
-              styles={{ width: '100%' }}
-{/* >>>>>>> 8295daaf9117960950154e57f49089cfdb9c87cf */}
+              styles={{ width: "100%" }}
             />
             {/* text area para colocar texto */}
             {selectedButton === 0 && (
