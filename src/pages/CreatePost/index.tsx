@@ -54,7 +54,7 @@ const CreatePost: React.FC = () => {
   }, [subredditid]);
   //functions
   async function createPost() {
-    if (!!subreddit && !!title) {
+    if (selectedButton === 0 && !!subreddit && !!title) {
       // <<<<<<< HEAD
       if (!text && selectedButton === 0) {
         return;
@@ -65,10 +65,6 @@ const CreatePost: React.FC = () => {
         text: !!text ? text : undefined,
       });
       navigate(urls.subreddit.replace(":subredditid", subreddit.id.toString()));
-      // =======
-      //       await callCreatePostService({ subredditid: subreddit.id, title: title });
-      //       navigate(urls.subreddit.replace(':subredditid', subreddit.id.toString()));
-      // >>>>>>> 8295daaf9117960950154e57f49089cfdb9c87cf
     }
   }
   return (
@@ -79,6 +75,7 @@ const CreatePost: React.FC = () => {
           <Styles.CreatePostContainerTitle>
             Create a post
           </Styles.CreatePostContainerTitle>
+          {/* formulario para criação de post */}
           <Styles.CreatePostContainerForm>
             <ButtonsBar
               botoes={["Post", "Image", "Link", "Poll"]}
@@ -86,12 +83,12 @@ const CreatePost: React.FC = () => {
               selected={selectedButton}
               setSelected={setSelectedButton}
             />
-            {/* titulo */}
+            {/* campo para colocar titulo */}
             <TextInput
               value={title}
               setValue={setTitle}
               placeholder="Title"
-              styles={{ width: "100%" }}
+              styles={{ width: "95%", marginTop: "10px" }}
             />
             {/* text area para colocar texto */}
             {selectedButton === 0 && (

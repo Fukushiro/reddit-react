@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import TextInput from "../../components/TextInput";
+import { medium, small } from "../../constants/sizes";
 
 export const MainContainer = styled.div``;
 
@@ -11,6 +13,12 @@ export const CreatePostContainer = styled.div`
 export const CreatePostMainContainer = styled.div`
   /* background-color: red; */
   width: 740px;
+  @media (max-width: ${medium}px) {
+    width: 600px;
+  }
+  @media (max-width: ${small}px) {
+    width: 80%;
+  }
 `;
 
 export const CreatePostContainerTitle = styled.h3`
