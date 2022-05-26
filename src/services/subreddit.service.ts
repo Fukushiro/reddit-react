@@ -1,5 +1,5 @@
-import { failNoReturn, IRetorno, RetornoPadrao, success } from '.';
-import { apiReddit } from './apiReddit';
+import { failNoReturn, IRetorno, RetornoPadrao, success } from ".";
+import { apiReddit } from "./apiReddit";
 
 //get subreddit by id
 export async function getSubredditService({
@@ -17,6 +17,8 @@ export async function getSubredditService({
 export interface IGetSubredditService extends RetornoPadrao {
   id: number;
   nome: string;
+  about: string;
+  title: string;
 }
 export async function callGetSubredditService({
   id,
@@ -28,13 +30,17 @@ export async function callGetSubredditService({
     return {
       id: response.data.subreddit.id,
       nome: response.data.subreddit.nome,
+      about: response.data.subreddit.about,
+      title: response.data.subreddit.title,
     };
   }
   return {
     id: -1,
-    nome: '',
+    nome: "",
     erro: true,
     message: `Erro ${response}`,
+    about: "",
+    title: "",
   };
 }
 
@@ -114,11 +120,11 @@ export async function callGetSubredditByName({
       retorno: {
         subreddits: response.data.subreddit,
       },
-      message: 'Sucesso',
+      message: "Sucesso",
     };
   }
   return {
     erro: true,
-    message: 'Erro',
+    message: "Erro",
   };
 }

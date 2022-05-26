@@ -147,9 +147,7 @@ const Subreddit: React.FC = () => {
         <Styles.IconImage src="https://placeholder.pics/svg/100x100" />
         <Styles.InfosTextContainer>
           <Styles.InfosTextLabelDiv>
-            <Styles.InfosTextLabel>
-              Sion is love, Sion is life
-            </Styles.InfosTextLabel>
+            <Styles.InfosTextLabel>{subreddit?.title}</Styles.InfosTextLabel>
             <Button
               onClick={joinOnClick}
               text={!!userInSubreddit ? "Leave" : "Join"}
@@ -173,9 +171,7 @@ const Subreddit: React.FC = () => {
               About Community
             </Styles.RightContainerAboutTitle>
             <Styles.RightContainerAboutText>
-              You play Sion? You belong here! Share your games, share your
-              strategies, cheeses, big plays, guides, etc. Sion is a champion
-              from the game League of Legends.
+              {subreddit?.about}
             </Styles.RightContainerAboutText>
 
             <Button
