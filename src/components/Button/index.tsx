@@ -1,11 +1,12 @@
 import { Properties } from "csstype";
 import React from "react";
+import { CSSProperties } from "styled-components";
 import * as Styles from "./styles";
 // import { Container } from './styles';
 interface IButton {
   onClick: any;
   text: string;
-  style?: Properties;
+  style?: CSSProperties;
 }
 const Button: React.FC<IButton> = ({ onClick, text, style }) => {
   return (

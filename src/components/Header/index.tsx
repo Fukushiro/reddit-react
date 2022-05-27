@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { flavor } from '../../flavor';
-import DrawerMenu from './DrawerMenu';
-import * as Styles from './styles';
+import React, { useEffect, useState } from "react";
+import { flavor } from "../../flavor";
+import DrawerMenu from "./DrawerMenu";
+import * as Styles from "./styles";
 
 // import { Container } from './styles';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { urls } from '../../route';
-import Search from './Search';
-import { useMediaQuery } from '@react-hook/media-query';
-import { small } from '../../constants/sizes';
-import { IGetSubredditService } from '../../services/subreddit.service';
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { urls } from "../../route";
+import Search from "./Search";
+import { useMediaQuery } from "@react-hook/media-query";
+import { small } from "../../constants/sizes";
+import { IGetSubredditService } from "../../services/subreddit.service";
+import UserDrawer from "./UserDrawer";
 interface IHeader {
   currentSubreddit?: IGetSubredditService;
   isSubreddit?: boolean;
@@ -29,7 +30,7 @@ const Header: React.FC<IHeader> = ({
   const user: { user: { username: string; id: number }; logado: boolean } =
     useSelector((v: any) => v.User);
   useEffect(() => {
-    console.log('Aqui');
+    console.log("Aqui");
   }, [refresh]);
   return (
     <Styles.MainContainer>
@@ -54,11 +55,12 @@ const Header: React.FC<IHeader> = ({
       </Styles.logoContainer>
       <Styles.Drawer
         user={user}
-        title={isSubreddit ? currentSubreddit?.nome : 'Home'}
+        title={isSubreddit ? currentSubreddit?.nome : "Home"}
         style={{ marginRight: 10, flex: 0.25 }}
         refresh={refresh}
       />
       <Styles.SearchBar style={{ flex: 0.25 }} />
+      <UserDrawer user={user} style={{ marginRight: 10, flex: 0.25 }} />
     </Styles.MainContainer>
   );
 };

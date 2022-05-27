@@ -128,3 +128,27 @@ export async function callGetSubredditByName({
     message: "Erro",
   };
 }
+
+export async function createSubredditService({
+  about,
+  nome,
+  title,
+}: {
+  nome: string;
+  title: string;
+  about: string;
+}): Promise<IRetorno> {
+  try {
+    const RESPONSE = await apiReddit.post(`subreddit/create`, {
+      nome: nome,
+      title: title,
+      about: about,
+    });
+
+    console.log(RESPONSE.data);
+
+    return success(RESPONSE, RESPONSE.data.message);
+  } catch (e: any) {
+    return failNoReturn(e.response.data.message);
+  }
+}

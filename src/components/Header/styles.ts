@@ -1,8 +1,8 @@
-import styled from 'styled-components';
-import { small } from '../../constants/sizes';
-import { flavor } from '../../flavor';
-import DrawerMenu from './DrawerMenu';
-import Search from './Search';
+import styled from "styled-components";
+import { small } from "../../constants/sizes";
+import { flavor } from "../../flavor";
+import DrawerMenu from "./DrawerMenu";
+import Search from "./Search";
 
 export const MainContainer = styled.div`
   background-color: #141615;
@@ -17,6 +17,7 @@ export const MainContainer = styled.div`
   top: 0;
   align-items: center;
 `;
+//container para a logo
 export const logoContainer = styled.div`
   /* background-color: red; */
   display: flex;
@@ -27,6 +28,7 @@ export const logoContainer = styled.div`
     margin-left: 10px;
   }
 `;
+// imagens de logo
 export const Logo = styled(flavor.images.logo)`
   cursor: pointer;
 `;
@@ -34,12 +36,12 @@ export const Logo = styled(flavor.images.logo)`
 export const LogoSmall = styled(flavor.images.logoSmall)`
   cursor: pointer;
 `;
-
+//seletor de subreddit
 export const Drawer = styled(DrawerMenu)`
   /* flex: 0.25; */
   /* margin-right: 20px; */
 `;
-
+//barra de busca de subreddit
 export const SearchBar = styled(Search)`
   /* flex: 0.25; */
 `;

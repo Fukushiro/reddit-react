@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { CSSProperties } from 'styled-components';
-import { urls } from '../../../route';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { CSSProperties } from "styled-components";
+import { urls } from "../../../route";
 import {
   callGetSubredditByName,
   IGetSubredditByName,
-} from '../../../services/subreddit.service';
-import * as Styles from './styles';
+} from "../../../services/subreddit.service";
+import * as Styles from "./styles";
 // import { Container } from './styles';
 interface ISearch {
   style?: CSSProperties;
 }
 const Search: React.FC<ISearch> = ({ style }) => {
   const navigate = useNavigate();
-  const [text, setText] = useState<string>('');
+  const [text, setText] = useState<string>("");
   const [subReddits, setSubReddits] = useState<Array<IGetSubredditByName>>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
   // functions
@@ -31,7 +31,7 @@ const Search: React.FC<ISearch> = ({ style }) => {
   }
   // useEffects
   useEffect(() => {
-    if (text === '') {
+    if (text === "") {
       return;
     }
     searchSubredditByName();
@@ -44,24 +44,26 @@ const Search: React.FC<ISearch> = ({ style }) => {
     <Styles.MainContainer style={style}>
       <Styles.Icon></Styles.Icon>
       <Styles.Input
-        type={'text'}
+        type={"text"}
         placeholder="Search reddit"
         onChange={(e) => {
           setText(e.target.value);
         }}
+        value={text}
       ></Styles.Input>
 
-      <Styles.Container style={{ display: text != '' ? 'block' : 'none' }}>
+      <Styles.Container style={{ display: text != "" ? "block" : "none" }}>
         {subReddits.map((subreddit, index) => (
           <Styles.ButtonDiv key={index}>
             <Styles.ButtonInside
               onClick={() => {
                 navigate(
                   urls.subreddit.replace(
-                    ':subredditid',
+                    ":subredditid",
                     subreddit.id.toString()
                   )
                 );
+                setText("");
                 // dispatch({ type: HeaderTypes.SET_OPEN_SUBREDDITS });
               }}
             >
