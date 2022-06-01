@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import * as Styles from './styles';
+import React, { useEffect, useState } from "react";
+import * as Styles from "./styles";
 // import { Container } from './styles';
-import { FaHome } from 'react-icons/fa';
-import { getUserSubredditService } from '../../../services/user.service';
-import { useNavigate } from 'react-router-dom';
-import { urls } from '../../../route';
-import { useDispatch, useSelector } from 'react-redux';
-import { HeaderTypes } from '../../../store/ducks/Header';
-import { CSSProperties } from 'styled-components';
-import { IGetSubredditService } from '../../../services/subreddit.service';
+import { FaHome } from "react-icons/fa";
+import { getUserSubredditService } from "../../../services/user.service";
+import { useNavigate } from "react-router-dom";
+import { urls } from "../../../route";
+import { useDispatch, useSelector } from "react-redux";
+import { HeaderTypes } from "../../../store/ducks/Header";
+import { CSSProperties } from "styled-components";
+import { IGetSubredditService } from "../../../services/subreddit.service";
+import { log } from "console";
 interface IDrawerMenu {
   user: { user: { username: string; id: number }; logado: boolean } | null;
   title?: string;
@@ -34,6 +35,7 @@ const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title, style, refresh }) => {
         const { funcionou, response } = await getUserSubredditService(
           user.user.id
         );
+        console.log("DrawerMenu getUserSubredditService", response, funcionou);
 
         const SUBREDDITS_TRATADOS:
           | Array<{ id: number; nome: string }>
@@ -50,29 +52,34 @@ const DrawerMenu: React.FC<IDrawerMenu> = ({ user, title, style, refresh }) => {
     })();
   }, [user, refresh]);
   return (
-    <Styles.MainContainer style={style}>
-      <FaHome style={{ position: 'absolute', left: 10 }} />
+    <Styles.MainContainer style={style} data-testid={"mainContainer"}>
+      <FaHome style={{ position: "absolute", left: 10 }} />
 
       <Styles.Button
         onClick={() => {
           setShowContent(!showContent);
           dispatch({ type: HeaderTypes.SET_OPEN_SUBREDDITS });
         }}
+        data-testid={"button"}
       >
-        {!!title ? title : 'Home'}
+        {!!title ? title : "Home"}
       </Styles.Button>
 
       <Styles.Container
-        style={{ display: header.subredditOpen ? 'block' : 'none' }}
+        data-testid={"container"}
+        style={{ display: header.subredditOpen ? "block" : "none" }}
       >
         <Styles.Title>MY COMMUNITIES</Styles.Title>
         {/* <Styles.ButtonInside>dsads</Styles.ButtonInside> */}
         {subreddits.map((v, i) => (
           <Styles.ButtonDiv key={i}>
             <Styles.ButtonInside
+              data-testid={`button_coisa${i}`}
               onClick={() => {
+                console.log("Button clicked");
+
                 navigate(
-                  urls.subreddit.replace(':subredditid', v.id.toString())
+                  urls.subreddit.replace(":subredditid", v.id.toString())
                 );
                 dispatch({ type: HeaderTypes.SET_OPEN_SUBREDDITS });
               }}

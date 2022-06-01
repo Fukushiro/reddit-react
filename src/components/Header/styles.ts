@@ -29,19 +29,19 @@ export const logoContainer = styled.div`
   }
 `;
 // imagens de logo
-export const Logo = styled(flavor.images.logo)`
-  cursor: pointer;
-`;
+export const Logo =
+  flavor.images.logo != null
+    ? styled(flavor.images.logo)`
+        cursor: pointer;
+      `
+    : styled.div``;
 
-export const LogoSmall = styled(flavor.images.logoSmall)`
-  cursor: pointer;
-`;
+export const LogoSmall =
+  flavor.images.logoSmall != null
+    ? styled(flavor.images.logoSmall)`
+        cursor: pointer;
+      `
+    : styled.div``;
 //seletor de subreddit
-export const Drawer = styled(DrawerMenu)`
-  /* flex: 0.25; */
-  /* margin-right: 20px; */
-`;
+
 //barra de busca de subreddit
-export const SearchBar = styled(Search)`
-  /* flex: 0.25; */
-`;

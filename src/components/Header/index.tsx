@@ -25,6 +25,7 @@ const Header: React.FC<IHeader> = ({
   //useEffect
   // media query
   const smallQuery = useMediaQuery(`only screen and (max-width: ${small}px)`);
+  const [a, b] = useState<string>("dasdas");
   //
   const navigate = useNavigate();
   const user: { user: { username: string; id: number }; logado: boolean } =
@@ -53,13 +54,13 @@ const Header: React.FC<IHeader> = ({
           />
         )}
       </Styles.logoContainer>
-      <Styles.Drawer
+      <DrawerMenu
         user={user}
         title={isSubreddit ? currentSubreddit?.nome : "Home"}
         style={{ marginRight: 10, flex: 0.25 }}
         refresh={refresh}
       />
-      <Styles.SearchBar style={{ flex: 0.25 }} />
+      <Search style={{ flex: 0.25 }} />
       <UserDrawer user={user} style={{ marginRight: 10, flex: 0.25 }} />
     </Styles.MainContainer>
   );

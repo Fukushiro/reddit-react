@@ -1,5 +1,5 @@
-import { failNoReturn, IRetorno, success } from '.';
-import { apiReddit } from './apiReddit';
+import { failNoReturn, IRetorno, success } from ".";
+import { apiReddit } from "./apiReddit";
 
 export async function createUserService({
   username,
@@ -9,7 +9,7 @@ export async function createUserService({
   password: string;
 }): Promise<IRetorno> {
   try {
-    const RESPONSE = await apiReddit.post('/user/create', {
+    const RESPONSE = await apiReddit.post("/user/create", {
       username: username,
       password: password,
     });
@@ -27,7 +27,7 @@ export async function authUserService({
   password: string;
 }): Promise<IRetorno> {
   try {
-    const RESPONSE = await apiReddit.post('/user/auth', {
+    const RESPONSE = await apiReddit.post("/user/auth", {
       username: username,
       password: password,
     });
@@ -49,7 +49,7 @@ export async function getUserSubredditService(
   id: number
 ): Promise<IRetornoSubreddit> {
   try {
-    const RESPONSE = await apiReddit.post('/user/get/subreddit', {
+    const RESPONSE = await apiReddit.post("/user/get/subreddit", {
       userid: id,
     });
 
