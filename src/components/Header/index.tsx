@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { urls } from "../../route";
 import Search from "./Search";
 import { useMediaQuery } from "@react-hook/media-query";
-import { small } from "../../constants/sizes";
+import { large, medium, small } from "../../constants/sizes";
 import { IGetSubredditService } from "../../services/subreddit.service";
 import UserDrawer from "./UserDrawer";
 interface IHeader {
@@ -25,6 +25,8 @@ const Header: React.FC<IHeader> = ({
   //useEffect
   // media query
   const smallQuery = useMediaQuery(`only screen and (max-width: ${small}px)`);
+  const mediumQuery = useMediaQuery(`only screen and (max-width: ${medium}px)`);
+  const largeQuery = useMediaQuery(`only screen and (max-width: ${large}px)`);
   const [a, b] = useState<string>("dasdas");
   //
   const navigate = useNavigate();
@@ -35,7 +37,18 @@ const Header: React.FC<IHeader> = ({
   }, [refresh]);
   return (
     <Styles.MainContainer>
-      <Styles.logoContainer>
+      <Styles.logoContainer
+        style={{
+          // backgroundColor: !!smallQuery
+          //   ? "red"
+          //   : !!mediumQuery
+          //   ? "blue"
+          //   : !!large
+          //   ? "green"
+          //   : "yellow",
+          flex: 0.15,
+        }}
+      >
         {smallQuery ? (
           <Styles.LogoSmall
             width={40}
@@ -61,7 +74,7 @@ const Header: React.FC<IHeader> = ({
         refresh={refresh}
       />
       <Search style={{ flex: 0.25 }} />
-      <UserDrawer user={user} style={{ marginRight: 10, flex: 0.25 }} />
+      <UserDrawer user={user} style={{ marginRight: 10, flex: 0.35 }} />
     </Styles.MainContainer>
   );
 };

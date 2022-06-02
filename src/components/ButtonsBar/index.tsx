@@ -32,6 +32,7 @@ const ButtonsBar: React.FC<IButtonsBar> = ({
           onClick={() => {
             setSelected(i);
           }}
+          key={i}
         >
           <Styles.ButtonText
             style={{ color: i === selected ? "white" : "#676969" }}

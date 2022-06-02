@@ -1,5 +1,6 @@
 // <<<<<<< HEAD
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/Button";
 import ButtonsBar from "../../components/ButtonsBar";
@@ -25,6 +26,9 @@ import * as Styles from "./styles";
 // import { Container } from './styles';
 
 const CreatePost: React.FC = () => {
+  //user
+  const user: { user: { username: string; id: number }; logado: boolean } =
+    useSelector((v: any) => v.User);
   //useStates
   const [subreddit, setSubreddit] = useState<IGetSubredditService>();
   const [hasText, setHasText] = useState<boolean>(false);
@@ -63,6 +67,7 @@ const CreatePost: React.FC = () => {
         subredditid: subreddit.id,
         title: title,
         text: !!text ? text : undefined,
+        userid: user.user.id,
       });
       navigate(urls.subreddit.replace(":subredditid", subreddit.id.toString()));
     }

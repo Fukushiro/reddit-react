@@ -59,7 +59,7 @@ const UserDrawer: React.FC<IDrawerMenu> = ({ user, style, refresh }) => {
           dispatch({ type: HeaderTypes.SET_OPEN_USER_DRAWER });
         }}
       >
-        dasdasdasdas
+        {user?.user.username}
       </Styles.Button>
 
       <Styles.Container

@@ -1,5 +1,6 @@
 import { failNoReturn, IRetorno, RetornoPadrao, success } from ".";
 import { apiReddit } from "./apiReddit";
+import { IUser } from "./user.service";
 
 //get subreddit by id
 export async function getSubredditService({
@@ -62,6 +63,7 @@ export interface IGetSubredditPost {
   id: number;
   title: string;
   text: string | null;
+  user: IUser;
 }
 export interface IGetSubredditPostsService {
   posts: Array<IGetSubredditPost>;
@@ -129,6 +131,7 @@ export async function callGetSubredditByName({
   };
 }
 
+// create subreddit
 export async function createSubredditService({
   about,
   nome,

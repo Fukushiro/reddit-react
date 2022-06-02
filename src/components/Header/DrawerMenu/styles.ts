@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import styled from "styled-components";
+import { large, medium, small } from "../../../constants/sizes";
 
 export const MainContainer = styled.div`
   width: 250px;
@@ -10,6 +11,7 @@ export const MainContainer = styled.div`
   align-items: center;
   position: relative;
   z-index: 10000;
+  /* background-color: red; */
 `;
 
 export const Button = styled.button`

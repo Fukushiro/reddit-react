@@ -1,14 +1,14 @@
-import * as Styles from './styles';
-import { flavor } from '../../flavor';
-import { useSelector } from 'react-redux';
-import React, { CSSProperties, useEffect, useState } from 'react';
-import { IGetSubredditPost } from '../../services/subreddit.service';
+import * as Styles from "./styles";
+import { flavor } from "../../flavor";
+import { useSelector } from "react-redux";
+import React, { CSSProperties, useEffect, useState } from "react";
+import { IGetSubredditPost } from "../../services/subreddit.service";
 import {
   callAvaliateUserUpdatePostService,
   callGetUserUpvotePostAvaliationService,
   callGetUserUpvotePostUpvotesService,
   IUserUpvotePostAvaliation,
-} from '../../services/post.service';
+} from "../../services/post.service";
 // import { Container } from './styles';
 interface ICard {
   post: IGetSubredditPost;
@@ -40,7 +40,7 @@ const Card: React.FC<ICard> = ({ post, style }) => {
         id: post.id,
       });
 
-      if (up?.upvotes != null) {
+      if (!!up && up?.upvotes != null) {
         setTotalUp(up.upvotes);
       } else {
         setTotalUp(0);
@@ -102,7 +102,9 @@ const Card: React.FC<ICard> = ({ post, style }) => {
       </Styles.LeftContainer>
       <Styles.RightContainer>
         <Styles.TopContainer>
-          <Styles.Spam>Posted by u/Nome</Styles.Spam>
+          <Styles.Spam>
+            Posted by u/{!!post.user ? post.user.username : "no user"}
+          </Styles.Spam>
         </Styles.TopContainer>
         <Styles.TitleContainer>
           <Styles.TitleContainerTitle>{post.title}</Styles.TitleContainerTitle>

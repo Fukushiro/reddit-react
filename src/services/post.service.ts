@@ -130,16 +130,19 @@ export async function createPostService({
   subredditid,
   title,
   text,
+  userid,
 }: {
   subredditid: number;
   title: string;
   text?: string | null;
+  userid: number;
 }): Promise<IRetorno> {
   try {
     const RESPONSE = await apiReddit.post(`post/create`, {
       subredditid: subredditid,
       title: title,
       text: !!text ? text : null,
+      userid: userid,
     });
     return success(RESPONSE);
   } catch (e) {
@@ -151,15 +154,18 @@ export async function callCreatePostService({
   subredditid,
   title,
   text,
+  userid,
 }: {
   subredditid: number;
   title: string;
   text?: string;
+  userid: number;
 }): Promise<boolean> {
   const { response, funcionou } = await createPostService({
     subredditid: subredditid,
     title: title,
     text: !!text ? text : null,
+    userid: userid,
   });
   if (funcionou) {
     return true;

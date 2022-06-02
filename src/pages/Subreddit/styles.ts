@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { small } from '../../constants/sizes';
+import styled from "styled-components";
+import { small } from "../../constants/sizes";
 // import { flavor } from '../../flavor';
 
 export const MainContainer = styled.div`
@@ -89,17 +89,13 @@ export const LeftContainer = styled.div`
     width: 100%;
   }
 `;
-
 export const RightContainer = styled.div`
   /* flex: 0.3; */
   display: flex;
   flex-direction: column;
-
   /* background-color: blue; */
-
   align-items: center;
   width: 30%;
-
   @media (max-width: ${small}px) {
     display: none;
   }
@@ -113,13 +109,13 @@ export const RightContainerAbout = styled.div`
 `;
 
 export const RightContainerAboutTitle = styled.h2`
-  color: '#545556';
+  color: "#545556";
   font-size: 14px;
   font-family: Arial, Helvetica, sans-serif;
 `;
 
 export const RightContainerAboutText = styled.p`
   font-size: 14px;
-  color: '#D7DADC';
+  color: "#D7DADC";
 `;
 export const RightContainerAboutButton = styled.button``;

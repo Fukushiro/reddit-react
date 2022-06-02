@@ -37,6 +37,12 @@ export async function authUserService({
     return failNoReturn();
   }
 }
+
+export interface IUser {
+  id: number;
+  username: string;
+}
+
 interface IRetornoSubreddit {
   response: {
     data: {
