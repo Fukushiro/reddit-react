@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { small } from "../../constants/sizes";
+import { small, medium } from "../../constants/sizes";
 import { flavor } from "../../flavor";
 
 export const MainContainer = styled.div`
@@ -15,6 +15,9 @@ export const MainContainer = styled.div`
   border: 1px solid #4a4845;
   &:first-child {
     margin-top: 20px;
+  }
+  @media (max-width: ${medium}px) {
+    width: 75%;
   }
   @media (max-width: ${small}px) {
     width: 95%;

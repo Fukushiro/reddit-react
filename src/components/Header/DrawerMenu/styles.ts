@@ -69,4 +69,10 @@ export const Container = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
+
+  @media (max-width: ${medium}px) {
+  }
+  @media (max-width: ${small}px) {
+    width: 200px;
+  }
 `;

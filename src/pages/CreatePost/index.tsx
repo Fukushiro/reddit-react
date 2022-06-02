@@ -59,7 +59,6 @@ const CreatePost: React.FC = () => {
   //functions
   async function createPost() {
     if (selectedButton === 0 && !!subreddit && !!title) {
-      // <<<<<<< HEAD
       if (!text && selectedButton === 0) {
         return;
       }

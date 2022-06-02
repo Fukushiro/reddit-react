@@ -21,6 +21,7 @@ import {
   userRemoveSubreddit,
 } from "../../services/usersubreddit.service";
 import { useSelector } from "react-redux";
+import { medium } from "../../constants/sizes";
 
 const Subreddit: React.FC = () => {
   const user: { user: { username: string; id: number }; logado: boolean } =
@@ -141,7 +142,9 @@ const Subreddit: React.FC = () => {
         text={modalMessage}
       />
       <Header isSubreddit currentSubreddit={subreddit} refresh={refresh} />
-      <Styles.BackgroundImage src="https://placeholder.pics/svg/1000x900" />
+      <Styles.ImageContainer>
+        <Styles.BackgroundImage src="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Sion_0.jpg" />
+      </Styles.ImageContainer>
       {/* Icone e titulo do subreddit */}
       <Styles.InfosContainer>
         <Styles.IconImage src="https://placeholder.pics/svg/100x100" />

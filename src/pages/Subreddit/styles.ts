@@ -1,16 +1,34 @@
 import styled from "styled-components";
-import { small } from "../../constants/sizes";
+import { large, medium, small } from "../../constants/sizes";
 // import { flavor } from '../../flavor';
 
 export const MainContainer = styled.div`
   color: white;
+  /* width: 100%; */
+  /* background-color: red; */
+`;
+
+export const ImageContainer = styled.div`
+  width: 100%;
+  height: 500px;
+  background-color: red;
+
+  @media (max-width: ${medium}px) {
+    height: 350px;
+  }
+  @media (max-width: ${small}px) {
+    height: 250px;
+  }
 `;
 
 export const BackgroundImage = styled.img`
   width: 100%;
+  height: 100%;
   /* width: 1000px; */
   object-fit: cover;
-  height: 300px;
+  object-position: top;
+  /* display: none; */
+
   z-index: 0;
 `;
 // barra com infos
@@ -49,6 +67,13 @@ export const InfosTextLabelDiv = styled.div`
   justify-content: space-between;
   width: 450px;
   /* background-color: red; */
+  @media (max-width: ${medium}px) {
+    width: 400px;
+  }
+  @media (max-width: ${small}px) {
+    width: 100%;
+    justify-content: flex-start;
+  }
 `;
 
 export const InfosTextLabel = styled.h1`
