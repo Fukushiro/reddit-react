@@ -9,6 +9,8 @@ import {
   callGetUserUpvotePostUpvotesService,
   IUserUpvotePostAvaliation,
 } from "../../services/post.service";
+import { useNavigate } from "react-router-dom";
+import { urls } from "../../route";
 // import { Container } from './styles';
 interface ICard {
   post: IGetSubredditPost;
@@ -22,6 +24,8 @@ const Card: React.FC<ICard> = ({ post, style }) => {
   const [update, setUpdate] = useState<boolean>(false);
   //user
   const user = useSelector((state: any) => state.User);
+
+  const navigate = useNavigate();
 
   //functions
   async function changeAvaliation(upvote: number) {
@@ -60,9 +64,16 @@ const Card: React.FC<ICard> = ({ post, style }) => {
       }
     })();
   }, [user, post, update]);
-
+  function goToPost() {
+    navigate(urls.post.replace(":postid", post.id.toString()));
+  }
   return (
-    <Styles.MainContainer style={style}>
+    <Styles.MainContainer
+      style={style}
+      onClick={() => {
+        goToPost();
+      }}
+    >
       <Styles.LeftContainer>
         <Styles.LeftContainerButton
           onClick={() => {

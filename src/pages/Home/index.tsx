@@ -3,6 +3,7 @@ import Header from "../../components/Header";
 import { flavor } from "../../flavor";
 import { Container2, MainContainer } from "./styles";
 import * as Styles from "./styles";
+import * as GlobalStyles from "../../global/globalStyled";
 // import { Container } from './styles';
 
 const Home: React.FC = () => {
@@ -10,10 +11,12 @@ const Home: React.FC = () => {
     <MainContainer>
       <Header />
       <Styles.BodyContainer>
-        <Styles.LeftContainer></Styles.LeftContainer>
-        <Styles.RightContainer>
+        <GlobalStyles.LeftContainer>
           <Styles.CreatePostCard>dsa</Styles.CreatePostCard>
-        </Styles.RightContainer>
+        </GlobalStyles.LeftContainer>
+        <GlobalStyles.RightContainer>
+          <Styles.CreatePostCard>dsa</Styles.CreatePostCard>
+        </GlobalStyles.RightContainer>
       </Styles.BodyContainer>
     </MainContainer>
   );

@@ -37,7 +37,7 @@ export const Title = styled.p`
 
 export const Division = styled.div`
   width: 100%;
-  border: 1px solid white;
+  border: 1px solid #615b51;
 `;
 
 export const ButtonDiv = styled.div``;

@@ -1,5 +1,6 @@
 import { failNoReturn, IRetorno, success } from ".";
 import { apiReddit } from "./apiReddit";
+import { IUser } from "./user.service";
 
 //get sum of upvotes
 export async function getUserUpvotePostUpvotesService({
@@ -171,4 +172,30 @@ export async function callCreatePostService({
     return true;
   }
   return false;
+}
+interface IPost {
+  id: number;
+  title: string;
+  user: IUser;
+}
+
+interface IGetPostByIdServiceReturn extends IRetorno {
+  obj?: IPost;
+}
+//get post by id
+export async function getPostByIdService({
+  id,
+}: {
+  id: number;
+}): Promise<IGetPostByIdServiceReturn> {
+  try {
+    const RESPONSE = await apiReddit.get(`post/get/${id}`);
+    return success(RESPONSE, `Success get post by id`, {
+      id: RESPONSE.data.post.id,
+      title: RESPONSE.data.post.title,
+      user: RESPONSE.data.post.user,
+    });
+  } catch (e) {
+    return failNoReturn();
+  }
 }

@@ -14,24 +14,6 @@ export const BodyContainer = styled.div`
   justify-content: center;
   align-items: flex-start;
 `;
-export const LeftContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  /* background-color: #191f25; */
-  align-items: center;
-  /* flex: 0.7; */
-  /* background-color: blue;
-  height: 500px; */
-`;
-
-export const RightContainer = styled.div`
-  /* flex: 0.3; */
-  flex-direction: column;
-
-  /* background-color: blue; */
-  margin-left: 24px;
-`;
 
 export const CreatePostCard = styled.div`
   background-color: #1a1a1b;

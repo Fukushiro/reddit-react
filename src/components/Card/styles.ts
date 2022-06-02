@@ -5,6 +5,7 @@ import { flavor } from "../../flavor";
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: row;
+  cursor: pointer;
   /* <<<<<<< HEAD */
   background-color: ${flavor.colors.cardBackground};
   width: 640px;
