@@ -6,23 +6,23 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
-} from '@mui/material';
-import React, { useState } from 'react';
-import { flavor } from '../../flavor';
+} from "@mui/material";
+import React, { useState } from "react";
+import { flavor } from "../../flavor";
 
-import * as Styles from './styles';
-import { FaEyeSlash, FaEye } from 'react-icons/fa';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import { useNavigate } from 'react-router-dom';
-import { urls } from '../../route';
-import { createUserService } from '../../services/user.service';
+import * as Styles from "./styles";
+import { FaEyeSlash, FaEye } from "react-icons/fa";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import { useNavigate } from "react-router-dom";
+import { urls } from "../../route";
+import { createUserService } from "../../services/user.service";
 // import { Container } from './styles';
 
 const Login: React.FC = () => {
   // useState de valores
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   // useState mostrar senha
   const [showPass, setShowPass] = useState<boolean>(false);
   //route
@@ -39,7 +39,7 @@ const Login: React.FC = () => {
           }}
         />
         <Styles.LoginTextInputPass
-          sx={{ m: 1, width: '25ch' }}
+          sx={{ m: 1, width: "25ch" }}
           variant="outlined"
           style={{ marginTop: 20 }}
         >
@@ -48,7 +48,7 @@ const Login: React.FC = () => {
           </InputLabel>
           <OutlinedInput
             id="outlined-adornment-password"
-            type={showPass ? 'text' : 'password'}
+            type={showPass ? "text" : "password"}
             value={password}
             onChange={(event) => {
               setPassword(event.target.value);
@@ -77,14 +77,14 @@ const Login: React.FC = () => {
               username: username,
               password: password,
             });
-            console.log('Register:', response);
+            console.log("Register:", response);
 
             if (funcionou) {
               navigate(urls.login);
             }
           }}
         >
-          Register
+          asdsa
         </Styles.LoginButton>
       </Styles.CardContainer>
     </Styles.MainContainer>

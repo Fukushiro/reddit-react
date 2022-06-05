@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  app:
+    container_name: dockerized-react-app
+    working_dir: /app
+    image: node:17-alpine
+    command: sh -c "yarn install && yarn start"
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
