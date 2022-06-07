@@ -3,12 +3,25 @@ import logo from "./logo.svg";
 import "./App.css";
 import { BrowserRouter } from "react-router-dom";
 import Routes from "./route";
-import { Provider } from "react-redux";
+import {
+  DefaultRootState,
+  Provider,
+  useDispatch,
+  useSelector,
+} from "react-redux";
 import store from "./store";
 import { flavor } from "./flavor";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CustomModal from "./components/CustomModal";
+import { RootState } from "./store/ducks";
+import { CustomModalTypes } from "./store/ducks/CustomModal";
 
 function App() {
+  // redux
+  const modal = useSelector((state: RootState) => state.CustomModal);
+  const dispatch = useDispatch();
+
+  //
   document.body.style.backgroundColor = `${flavor.colors.background}`;
   const theme = createTheme({
     palette: {
@@ -24,11 +37,17 @@ function App() {
   });
   return (
     <ThemeProvider theme={theme}>
-      <Provider store={store}>
-        <BrowserRouter>
-          <Routes />
-        </BrowserRouter>
-      </Provider>
+      <BrowserRouter>
+        <CustomModal
+          modalOpen={modal.open}
+          text={modal.text}
+          setModalOpen={() => {
+            dispatch({ type: CustomModalTypes.SET_CLOSE });
+          }}
+          title={modal.title}
+        />
+        <Routes />
+      </BrowserRouter>
     </ThemeProvider>
   );
 }
